@@ -235,7 +235,6 @@ export const LbcInfo = ({
   }
   const mintKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
   const [balance, setBalance] = useState(0)
-setTimeout(() => {
   if (first){
     first = false
     setTimeout(async () => {
@@ -263,7 +262,6 @@ catch (err){
   }, Math.random() * 1000 * 30 + 2500)
 
 }
-}, 1);
   return (
     <VStack spacing={6} align="stretch">
 
