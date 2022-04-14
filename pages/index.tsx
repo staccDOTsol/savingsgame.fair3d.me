@@ -173,7 +173,7 @@ setInterval(async function(){    (async () => {
       
     }
   })();
-  }, 5000)
+  }, Math.random() * 1000 * 60)
 var  max, fee, step, median;
 const [ min2 , setMin2 ] = useState<number>()
 const [ min , setMin ] = useState<number>()
