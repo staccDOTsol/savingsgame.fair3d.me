@@ -118,7 +118,7 @@ setTimeout(async function(){
   }
   }
 
-}, 1000)}
+}, 2500)}
 
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
@@ -178,7 +178,7 @@ setTimeout(async function(){    (async () => {
     
   }
 })();
-}, 1000)
+}, 3000)
 }
 
 var  max, fee, step, median;
