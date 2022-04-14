@@ -378,12 +378,12 @@ setBalance( tokenAmount.uiAmount)
                   .slice(
                     fairLaunch?.state.authority.toBase58().length - 3,
                     fairLaunch?.state.authority.toBase58().length,
-                  )}
+                  )} wins the entire grand prize when the countdown reaches 0.<br /><br />If anyone outbids them before that, the timer resets.
             <LightMode>
             
             </LightMode>
           </BlackBox>
-          <Text fontWeight={700}>Winning</Text>
+          <Text fontWeight={700}>Glhf :)</Text>
         </VStack>
       </Stack>
 
