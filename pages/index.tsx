@@ -272,7 +272,10 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-
+var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
+var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+   
   return (
     
     <Box
@@ -316,6 +319,9 @@ const BigText = ({ children, ...other }: TextProps) => {
             {!loading && tokenBondingKey && (
               <VStack align="stretch" spacing={8}>
                 <LbcInfo
+                mintPublicKey={mintPublicKey}
+                mintPublicKey2={mintPublicKey2}
+                fanout={fanout}
                 min={min as number}
                 fairLaunch={fairLaunch}
                 onDeposit={onDeposit}

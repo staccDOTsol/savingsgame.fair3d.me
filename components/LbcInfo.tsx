@@ -68,7 +68,10 @@ export const LbcInfo = ({
   wallet,
   onDeposit,
   min,
-  fairLaunch
+  fairLaunch,
+  mintPublicKey,
+  mintPublicKey2,
+  fanout
 }: {
     Pot: number;
   tokenBondingKey: PublicKey;
@@ -78,7 +81,9 @@ export const LbcInfo = ({
   onDeposit: any;
   min: number;
   fairLaunch: any;
-
+  mintPublicKey2: any;
+  mintPublicKey: any;
+  fanout: any;
 }) => {
     var [shares, setShares] = useState("1.38");
 
@@ -87,9 +92,7 @@ export const LbcInfo = ({
         console.log(e.target.value)
         setShares(e.target.value)
         }
-    var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
-var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-
+   
   var connection2 = new Connection('https://solana--devnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
   const { isOpen, onToggle } = useDisclosure({
@@ -133,8 +136,7 @@ var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
         // @ts-ignore
         wallet
     );
-    var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
-   
+  
   var ix = await fanoutSdk.distributeTokenMemberInstructions(
     {
       
@@ -251,7 +253,7 @@ var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
         <VStack flexGrow={4}>
 
         <BigText>
-              BID NOW TO WIN @ 
+              BID NOW TO WIN 
                   
                   </BigText>
           <BlackBox w="full" position="relative">
@@ -267,7 +269,7 @@ var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
               <BigText>
                 {isNaN(priceToUse)
                   ? "Not Started"
-                  : `${numberWithCommas(priceToUse, 4)} ${
+                  : `@${numberWithCommas(priceToUse, 4)} ${
                       metadata?.data.symbol
                     }`}
               </BigText> </Button>
