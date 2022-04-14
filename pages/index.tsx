@@ -232,7 +232,7 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2,
+    targetAmount: min2 * 0.95,
     slippage: 0.80
   })
     console.log('deposit');
