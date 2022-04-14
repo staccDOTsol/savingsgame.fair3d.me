@@ -352,7 +352,7 @@ var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
       </Head>
 
       <main className={styles.main}>
-    <br />  1. there is a social token
+    <br />1. there is a social token
     <br />2. every time someone buys or sells the social token, there are 5% fees of sol amount and 5% fees of token amount
     <br />3. these fees go into a big fanout wallet
     <br />4. the recipients of the fees are staked tokenholders
