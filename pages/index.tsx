@@ -375,6 +375,10 @@ var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
               <div></div>
             ) : ( 
               <div>
+
+<div style={{fontSize: "32px;"}}>                winner takes all {
+                // @ts-ignore
+              (fairLaunch?.treasury / 1000000000)} SOL! </div>
                     <Button
                       onClick={onDeposit}
                       disabled={
