@@ -312,7 +312,7 @@ export const LbcInfo = ({
                
               <BigText>
 
-                ◎ { Pot != 0 && numberWithCommas(Pot * 0.75, 4)}
+                ◎ { !isNaN(Pot) && numberWithCommas(Pot * 0.75, 4)}
               </BigText>
             )}
             <LightMode>
