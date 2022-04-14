@@ -73,9 +73,9 @@ let first = true
 
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
-let mintKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-var tokenBondingKey = new PublicKey("3nN2iNpJcgurQxN2V6P7TQMiSCQw3ENPeqqwfZ2pxpTT")
-var baseBondingKey = new PublicKey("TUuz8CZC8N5Nekt6WnQx5mt4xY7hMjPg3r34UzigUtB")
+let mintKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+var tokenBondingKey = usePublicKey("3nN2iNpJcgurQxN2V6P7TQMiSCQw3ENPeqqwfZ2pxpTT")
+var baseBondingKey = usePublicKey("TUuz8CZC8N5Nekt6WnQx5mt4xY7hMjPg3r34UzigUtB")
 const { tokenBondingSdk, loading } = useStrataSdks();
 const getPricing = async (
 tokenBondingSdk: SplTokenBonding | undefined,
@@ -141,8 +141,8 @@ return {
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-var mintPublicKey2 =new PublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
-var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
+var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
 
   var connection2 = new Connection('https://solana--devnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 //var wallet = useAnchorWallet()
@@ -216,11 +216,13 @@ await swap({
 
  if (!loading && tokenBondingSdk && min && min2){
   await tokenBondingSdk.sell({
+    // @ts-ignore
     tokenBonding: tokenBondingKey,
     targetAmount: min,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
+    // @ts-ignore
     tokenBonding: baseBondingKey,
     targetAmount: min2,
     slippage: 0.80

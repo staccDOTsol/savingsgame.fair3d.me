@@ -1,6 +1,7 @@
 import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
+import { usePublicKey } from "@strata-foundation/react";
 import {
   Box,
   BoxProps,
@@ -86,8 +87,8 @@ export const LbcInfo = ({
         console.log(e.target.value)
         setShares(e.target.value)
         }
-    var mintPublicKey2 =new PublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
-var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+    var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
+var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
 
   var connection2 = new Connection('https://solana--devnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
@@ -132,14 +133,16 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
         // @ts-ignore
         wallet
     );
-    var fanout = new PublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+    var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
    
   var ix = await fanoutSdk.distributeTokenMemberInstructions(
     {
       
       distributeForMint: true,
+      // @ts-ignore
       fanout: fanout,
       fanoutMint: mintPublicKey,
+      // @ts-ignore
       membershipMint: mintPublicKey,
      // @ts-ignore
       member: wallet.publicKey,
@@ -154,8 +157,10 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
   
        
     distributeForMint: true,
+    // @ts-ignore
     fanout: fanout,
     fanoutMint: mintPublicKey2,
+    // @ts-ignore
     membershipMint: mintPublicKey,
    // @ts-ignore
     member: wallet.publicKey,
@@ -183,12 +188,13 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
       // @ts-ignore
       wallet
   );
-  var fanout = new PublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+  var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
   console.log( (parseFloat(shares) * 10 ** 9))
   var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
         {
             
             shares:  (parseFloat(shares) * 10 ** 9),
+            // @ts-ignore
             fanout: fanout,
             membershipMint: mintPublicKey,
            // @ts-ignore
@@ -225,9 +231,10 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
         // @ts-ignore
         wallet
     );
-    var fanout = new PublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+    var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
     
     await fanoutSdk.unstakeTokenMember({
+        // @ts-ignore
       fanout: fanout,
       // @ts-ignore
       member: wallet.publicKey,
@@ -242,6 +249,11 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
     <VStack spacing={6} align="stretch">
       <Stack direction={["column", "row"]}>
         <VStack flexGrow={4}>
+
+        <BigText>
+              BID NOW TO WIN @ 
+                  
+                  </BigText>
           <BlackBox w="full" position="relative">
             {loadingPricing || typeof priceToUse == "undefined" ? (
               <Spinner size="lg" />
@@ -251,12 +263,13 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
                   false 
                 }
               >
+
               <BigText>
                 {isNaN(priceToUse)
                   ? "Not Started"
-                  : `Bid @ ${numberWithCommas(priceToUse, 4)} ${
+                  : `${numberWithCommas(priceToUse, 4)} ${
                       metadata?.data.symbol
-                    } Wins`}
+                    }`}
               </BigText> </Button>
             )}
             <Tooltip
@@ -376,7 +389,7 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
     <br />3. these fees go into a big fanout wallet
     <br />4. the recipients of the fees are staked tokenholders
     <br />5. you go to the site
-    <br />6. there is a countdown clock, and if you deposit more $ than the last player and nobody else deposits in the next 7days then you win
+    <br />6. there is a countdown clock, and if you deposit more $ than the last player and nobody else deposits in the next 7 days then you win
     <br />7. it is an english style auction and there is 1 winner :) glhf :)
     <br />8. game over? did not win? still staked? good news! round #2!
             </Text>
