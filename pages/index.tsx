@@ -352,7 +352,13 @@ var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
       </Head>
 
       <main className={styles.main}>
-        
+    <br />  1. there is a social token
+    <br />2. every time someone buys or sells the social token, there are 5% fees of sol amount and 5% fees of token amount
+    <br />3. these fees go into a big fanout wallet
+    <br />4. the recipients of the fees are staked tokenholders
+    <br />5. you go to the site
+    <br />6. there is a countdown clock, and if you deposit more $ than the last guy and nobody else deposits in the next 24hs than u win
+    <br />7. it is an english style auction and there is 1 winner :) glhf :)
     <div>Ayyy</div>
     {!loading && tokenBondingSdk && 
   <Swap tokenBondingKey={tokenBondingKey} />
