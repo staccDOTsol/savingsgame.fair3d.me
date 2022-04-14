@@ -71,12 +71,17 @@ export const LbcDisplay: NextPage = ({
   const { publicKey } = useWallet();
 
 let first = true
+let first2 = true
 
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
-let mintKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-var tokenBondingKey = usePublicKey("3nN2iNpJcgurQxN2V6P7TQMiSCQw3ENPeqqwfZ2pxpTT")
-var baseBondingKey = usePublicKey("TUuz8CZC8N5Nekt6WnQx5mt4xY7hMjPg3r34UzigUtB")
+
+var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
+var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
+
+
+var tokenBondingKey = usePublicKey("5gmtthiFuBA59c4ZWr8vfR8PtdH3DNpQruDBMg7nrL8B")
+var baseBondingKey =  usePublicKey("9Zse7YX2mPQFoyMuz2Gk2K8WcH83FY1BLfu34vN4sdHi")
 const { tokenBondingSdk, loading } = useStrataSdks();
 const getPricing = async (
 tokenBondingSdk: SplTokenBonding | undefined,
@@ -89,6 +94,7 @@ const [contributed, setContributed] = useState(0);
 const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
 if (first){
+  first = false 
 setTimeout(async function(){
 setInterval(async function(){
 if (!loading && tokenBondingSdk){
@@ -112,9 +118,8 @@ if (!loading && tokenBondingSdk){
     }
 }
 }
-}, Math.random() * 30 * 1000)
-}, 1000)
-first = false }
+}, Math.random() * 30 * 1000 + 2500)
+}, 1000)}
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
 const [alertState, setAlertState] = useState<AlertState>({
@@ -142,16 +147,14 @@ return {
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
-var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-
-  var connection2 = new Connection('https://solana--devnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 //var wallet = useAnchorWallet()
 
 const fairLaunchId = new anchor.web3.PublicKey(
-"3e4X7HFK7nVycvoKc3SgHMj5XtYndEQNAtwv6KtJEfSz",
+"6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
-
+if (first2){
+  first2=  false
 setInterval(async function(){    (async () => {
     if (!anchorWallet) {
       return;
@@ -174,29 +177,33 @@ setInterval(async function(){    (async () => {
       
     }
   })();
-  }, Math.random() * 1000 * 60)
-  (async () => {
-    if (!anchorWallet) {
-      return;
-    }
+  }, Math.random() * 1000 * 60 + 2500)
+  
+}
+setTimeout(async function(){    (async () => {
+  if (!anchorWallet) {
+    return;
+  }
 
-    try {
-     
-    //  setYourSOLBalance(balance);
+  try {
+   
+  //  setYourSOLBalance(balance);
 
-      const state = await getFairLaunchState(
-        anchorWallet,
-        fairLaunchId,
-        connection2,
-      );
+    const state = await getFairLaunchState(
+      anchorWallet,
+      fairLaunchId,
+      connection2,
+    );
 
-      setFairLaunch(state);
+    setFairLaunch(state);
 
 
-    } catch (e) {
-      
-    }
-  })();
+  } catch (e) {
+    
+  }
+})();
+}, 1000)
+
 var  max, fee, step, median;
 const [ min2 , setMin2 ] = useState<number>()
 const [ min , setMin ] = useState<number>()
@@ -296,9 +303,9 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-var mintPublicKey2 =usePublicKey("5NhF3kUzzuVuuYooJoJjZNQtzjPNdGfGdfUL4dojL7UL")  
-var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
+var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
+var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
    
   return (
     

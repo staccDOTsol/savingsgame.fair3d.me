@@ -61,7 +61,7 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-
+let first = true;
 export const LbcInfo = ({
     Pot,
   tokenBondingKey,
@@ -95,7 +95,7 @@ export const LbcInfo = ({
         setShares(e.target.value)
         }
    
-  var connection2 = new Connection('https://solana--devnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
   const { isOpen, onToggle } = useDisclosure({
     defaultIsOpen: false,
@@ -111,25 +111,9 @@ export const LbcInfo = ({
   const priceToUse = inputPrice || price;
 
   const { info: curve } = useCurve(tokenBonding?.curve);
-  const maxTime =
-    // @ts-ignore
-    curve?.definition.timeV0.curves[0].curve.timeDecayExponentialCurveV0
-      .interval;
-  const [elapsedTime, setElapsedTime] = useState<number | undefined>();
-  useInterval(() => {
-    setElapsedTime(
-      tokenBonding
-        ? new Date().valueOf() / 1000 - tokenBonding.goLiveUnixTime.toNumber()
-        : undefined
-    );
-  }, 500);
+  
 
-  const endDate = new Date(0);
-  endDate.setUTCSeconds(
-    (tokenBonding?.goLiveUnixTime.toNumber() || 0) + (maxTime || 0)
-  );
-
-  const { metadata } = useTokenMetadata(tokenBonding?.baseMint);
+  const { metadata } = useTokenMetadata(tokenBonding?.targetMint);
 
   async function claim(){
     if (wallet){    var fanoutSdk: FanoutClient;
@@ -249,15 +233,24 @@ export const LbcInfo = ({
     }
   
   }
-  const mintKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+  const mintKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
   const [balance, setBalance] = useState(0)
 setTimeout(() => {
+  if (first){
+    first = false
   setInterval(async () => {
+    try {
     // @ts-ignore
 var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey, mintKey)
 // @ts-ignore
 setBalance( tokenAmount.uiAmount)
-  }, Math.random() * 1000 * 30)
+}
+catch (err){
+
+}
+  }, Math.random() * 1000 * 30 + 2500)
+
+}
 }, 1);
   return (
     <VStack spacing={6} align="stretch">
@@ -301,34 +294,6 @@ setBalance( tokenAmount.uiAmount)
                     }`}
               </BigText> </Button>
             )}
-            <Tooltip
-              label={`${moment
-                .duration(maxTime - (elapsedTime || 0), "seconds")
-                .humanize()} Remaining`}
-            >
-              <Box
-                position="absolute"
-                top="14px"
-                right="14px"
-                w="14px"
-                h="14px"
-              >
-                <CircularProgressbar
-                  counterClockwise
-                  value={
-                    elapsedTime && maxTime
-                      ? ((maxTime - elapsedTime) / maxTime) * 100
-                      : 0
-                  }
-                  strokeWidth={50}
-                  styles={buildStyles({
-                    strokeLinecap: "butt",
-                    trailColor: "transparent",
-                    pathColor: "rgba(255, 255, 255, 0.36)",
-                  })}
-                />
-              </Box>
-            </Tooltip>
           </BlackBox>
           <VStack flexGrow={1}>
 
@@ -419,7 +384,7 @@ setBalance( tokenAmount.uiAmount)
     <br />3. these fees go into a big fanout wallet
     <br />4. the recipients of the fees are staked tokenholders
     <br />5. you go to the site
-    <br />6. there is a countdown clock, and if you deposit more $ than the last player and nobody else deposits in the next 7 days then you win
+    <br />6. there is a countdown clock, and if you deposit more $ than the last player and nobody else deposits before timer is up then you win
     <br />7. it is an english style auction and there is 1 winner :) glhf :)
     <br />8. game over? did not win? still staked? good news! round #2!
             </Text>

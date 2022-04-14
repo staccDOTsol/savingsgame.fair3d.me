@@ -262,7 +262,7 @@ export const receiveRefund = async (
 };
 
 const fairLaunchId = new anchor.web3.PublicKey(
-  "3e4X7HFK7nVycvoKc3SgHMj5XtYndEQNAtwv6KtJEfSz",
+  "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
 
 
