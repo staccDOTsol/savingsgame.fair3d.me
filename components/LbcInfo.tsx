@@ -311,7 +311,8 @@ export const LbcInfo = ({
             ) : (
                
               <BigText>
-                ◎ {numberWithCommas(Pot * 0.75, 4)}
+
+                ◎ { Pot != 0 && numberWithCommas(Pot * 0.75, 4)}
               </BigText>
             )}
             <LightMode>
