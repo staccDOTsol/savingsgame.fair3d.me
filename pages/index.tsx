@@ -151,6 +151,7 @@ var mintPublicKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
 const fairLaunchId = new anchor.web3.PublicKey(
 "3e4X7HFK7nVycvoKc3SgHMj5XtYndEQNAtwv6KtJEfSz",
 );
+
 setInterval(async function(){    (async () => {
     if (!anchorWallet) {
       return;
@@ -174,6 +175,28 @@ setInterval(async function(){    (async () => {
     }
   })();
   }, Math.random() * 1000 * 60)
+  (async () => {
+    if (!anchorWallet) {
+      return;
+    }
+
+    try {
+     
+    //  setYourSOLBalance(balance);
+
+      const state = await getFairLaunchState(
+        anchorWallet,
+        fairLaunchId,
+        connection2,
+      );
+
+      setFairLaunch(state);
+
+
+    } catch (e) {
+      
+    }
+  })();
 var  max, fee, step, median;
 const [ min2 , setMin2 ] = useState<number>()
 const [ min , setMin ] = useState<number>()

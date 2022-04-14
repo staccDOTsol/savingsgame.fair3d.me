@@ -348,7 +348,7 @@ setBalance( tokenAmount.uiAmount)
             ) : (
                
               <BigText>
-                ◎ {numberWithCommas(Pot, 4)}
+                ◎ {numberWithCommas(Pot * 0.75, 4)}
               </BigText>
             )}
             <LightMode>
@@ -379,6 +379,7 @@ setBalance( tokenAmount.uiAmount)
                     fairLaunch?.state.authority.toBase58().length - 3,
                     fairLaunch?.state.authority.toBase58().length,
                   )} wins the entire grand prize when the countdown reaches 0.<br /><br />  If anyone outbids them before that, the timer resets.
+          <br /> <br />Notably another  ◎ {numberWithCommas(Pot * 0.25, 4)} persists for the next round...
             <LightMode>
             
             </LightMode>
