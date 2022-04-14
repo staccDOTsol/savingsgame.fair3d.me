@@ -28,7 +28,10 @@ import {
   useTokenBonding,
   useTokenMetadata,
   useCapInfo,
+  usePublicKey,
 } from "@strata-foundation/react";
+import { getAssociatedAccountBalance } from "@strata-foundation/spl-utils";
+
 import moment from "moment";
 import React, { useState } from "react";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
@@ -246,9 +249,34 @@ export const LbcInfo = ({
     }
   
   }
+  const mintKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
+  const [balance, setBalance] = useState(1)
+setTimeout(() => {
+  setInterval(async () => {
+    // @ts-ignore
+var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey, mintKey)
+// @ts-ignore
+setBalance( tokenAmount.uiAmount)
+  }, 1000)
+}, 1);
   return (
     <VStack spacing={6} align="stretch">
+
+<Stack direction={["column", "row"]}>
+      <VStack flexGrow={4}>
+
+<BigText>
+ 
+          <BlackBox w="full" position="relative">{numberWithCommas(balance, 4)} </BlackBox> Your ${
+                metadata?.data.symbol
+              }   Balance
+ </BigText>
+</VStack>
+</Stack>
       <Stack direction={["column", "row"]}>
+
+      
+
         <VStack flexGrow={4}>
 
         <BigText>
