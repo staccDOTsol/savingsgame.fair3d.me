@@ -346,7 +346,7 @@ var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
   return (
     <div className={styles.container}>
       <Head>
-        <title>Fair3d.me - the game's in the meta</title>
+        <title>Fair3d.me - the game&apos;s in the meta</title>
         <meta name="description" content="Generated for a cool (2nd...) one-off demonstration to illustrate the power of Hydra, who is King." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
