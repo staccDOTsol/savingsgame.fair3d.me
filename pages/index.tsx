@@ -226,13 +226,13 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.138,
+    targetAmount: min * 1.2,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2 * 0.95,
+    targetAmount: min2 * 0.94,
     slippage: 0.80
   })
     console.log('deposit');
