@@ -34,7 +34,7 @@ export const Header: React.FC = () => (
     bg="grey"
   >
     <HStack spacing={4}>
-      <Text fontSize="xl">Test</Text>
+      <Text fontSize="xl">War of Attrition by Jare on ◎</Text>
     </HStack>
     <Box display={{ md: "block" }} flexBasis={{ base: "100%", md: "auto" }}>
       <HStack

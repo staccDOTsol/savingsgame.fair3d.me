@@ -376,7 +376,7 @@ var mintPublicKey = new PublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm"
     <br />3. these fees go into a big fanout wallet
     <br />4. the recipients of the fees are staked tokenholders
     <br />5. you go to the site
-    <br />6. there is a countdown clock, and if you deposit more $ than the last guy and nobody else deposits in the next 24hs than u win
+    <br />6. there is a countdown clock, and if you deposit more $ than the last player and nobody else deposits in the next 7days then you win
     <br />7. it is an english style auction and there is 1 winner :) glhf :)
     <br />8. game over? did not win? still staked? good news! round #2!
             </Text>
