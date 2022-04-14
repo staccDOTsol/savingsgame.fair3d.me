@@ -111,7 +111,7 @@ if (!loading && tokenBondingSdk){
     }
 }
 }
-}, 5000)
+}, Math.random() * 30 * 1000)
 }, 1000)
 first = false }
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
