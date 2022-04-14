@@ -302,7 +302,6 @@ console.log(instructions)
     console.log('Amount', amountLamports);
     await fairLaunch.program.rpc.purchaseTicket(
       // @ts-ignore
-      bump,
       new anchor.BN(amountLamports),
       {
           // @ts-ignore
