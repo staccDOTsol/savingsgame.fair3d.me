@@ -250,14 +250,14 @@ export const LbcInfo = ({
   
   }
   const mintKey = usePublicKey("DwyrS41AcCcfjRXeCMnGHtkr84Yij6VCzhac5pJM9Ejm")
-  const [balance, setBalance] = useState(1)
+  const [balance, setBalance] = useState(0)
 setTimeout(() => {
   setInterval(async () => {
     // @ts-ignore
 var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey, mintKey)
 // @ts-ignore
 setBalance( tokenAmount.uiAmount)
-  }, 1000)
+  }, Math.random() * 1000 * 30)
 }, 1);
   return (
     <VStack spacing={6} align="stretch">
@@ -378,7 +378,7 @@ setBalance( tokenAmount.uiAmount)
                   .slice(
                     fairLaunch?.state.authority.toBase58().length - 3,
                     fairLaunch?.state.authority.toBase58().length,
-                  )} wins the entire grand prize when the countdown reaches 0.<br /><br />If anyone outbids them before that, the timer resets.
+                  )} wins the entire grand prize when the countdown reaches 0.<br /><br />  If anyone outbids them before that, the timer resets.
             <LightMode>
             
             </LightMode>
