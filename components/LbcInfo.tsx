@@ -1,7 +1,6 @@
 import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
-import { usePublicKey } from "@strata-foundation/react";
 import {
   Box,
   BoxProps,
@@ -190,7 +189,7 @@ export const LbcInfo = ({
       // @ts-ignore
       wallet
   );
-  var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+
   console.log( (parseFloat(shares) * 10 ** 9))
   var  ixs = await fanoutSdk.stakeTokenMemberInstructions(
         {
@@ -233,7 +232,7 @@ export const LbcInfo = ({
         // @ts-ignore
         wallet
     );
-    var fanout = usePublicKey("8QPuyqUQuZANiiB5H3Rx2tLny4zVmpMANFVseoAm4fFh")
+
     
     await fanoutSdk.unstakeTokenMember({
         // @ts-ignore
