@@ -19,6 +19,8 @@
         "access": "public"
     },
     "scripts": {
+        "deploy:gh": "yarn export && gh-pages -d ./build/web --repo https://github.com/staccDOTsol/fair3d -t true --branch d3d",
+        "deploy": "cross-env  yarn build && yarn deploy:gh",
         "clean": "shx rm -rf .next",
         "dev": "NODE_OPTIONS='--inspect' next dev",
         "build": "yarn clean && next build",
@@ -27,12 +29,18 @@
     },
     "dependencies": {
         "@chakra-ui/react": "^1.8.1",
+        "@glasseaters/hydra-sdk": "^0.3.0",
         "@metaplex-foundation/mpl-token-metadata": "^1.1.0",
+        "@solana/wallet-adapter-material-ui": "^0.16.5",
         "@solana/wallet-adapter-react": "^0.15.3",
         "@solana/wallet-adapter-react-ui": "^0.9.1",
-        "@strata-foundation/react": "3.2.3",
+        "@strata-foundation/react": "3.3.3",
+        "antd": "^4.19.5",
+        "cross-env": "^7.0.3",
+        "gh-pages": "^3.2.3",
         "next": "12.0.7",
         "react": "17.0.2",
+        "react-countdown": "^2.3.2",
         "react-dom": "17.0.2",
         "react-hot-toast": "^2.2.0"
     },
