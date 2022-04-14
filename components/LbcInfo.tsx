@@ -238,6 +238,18 @@ export const LbcInfo = ({
 setTimeout(() => {
   if (first){
     first = false
+    setTimeout(async () => {
+      try {
+      // @ts-ignore
+  var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey, mintKey)
+  // @ts-ignore
+  setBalance( tokenAmount.uiAmount)
+  }
+  catch (err){
+  
+  }
+    },  2500)
+  
   setInterval(async () => {
     try {
     // @ts-ignore
