@@ -332,7 +332,6 @@ await swap({
 };
 async function doPurchase(){
 
-  try {
 
   let anum = 1 
   if (fairLaunch){
@@ -346,38 +345,7 @@ async function doPurchase(){
        message: 'Congratulations! contribution mewn nfa',
        severity: 'success',
      });
-   } catch (e) {
 
-try{
-    const state = await getFairLaunchState(
-      // @ts-ignore
-      anchorWallet,
-      // @ts-ignore
-      fairLaunchId,
-      connection2,
-    );
-
-    setFairLaunch(state);
-    let anum = 1 
-    if (fairLaunch){
-      anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
-    }
-    await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet, fairLaunch);
-     
-    setIsMinting(false);
-    setAlertState({
-      open: true,
-      message: 'Congratulations! contribution mewn nfa',
-      severity: 'success',
-    });
-
-  }
-  catch (err){
-     setTimeout(async function(){
-return await doPurchase()
-     }, 550)
-    }
-   }
 }
 const BlackBox = ({ children, ...other }: BoxProps) => {
   return (
