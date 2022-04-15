@@ -461,8 +461,8 @@ React.useEffect(() => {
   }
 }, [tokenBonding, tradingMints, tokenBonding2]);
 const identity = () => {};
-const [ driverLoading2, setDriverLoading] = useState(true)
-const [ swapProps2, setSwapProps] : any = useState() 
+var driverLoading: boolean 
+var swapProps: any 
 try{
 // @ts-ignore
 var { loading: driverLoading, ...swapProps } = useSwapDriver({
@@ -487,8 +487,6 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
   tokenBondingKey: tokenBondingKey,
   
 });
-setDriverLoading(driverLoading)
-setSwapProps(swapProps)
 } catch (err){
 
 }
@@ -555,7 +553,7 @@ setSwapProps(swapProps)
                 />
                 {!loading123 && min && min2 && 
                 // @ts-ignore
-    <SwapForm min={min * 1.2 * 1.01} isLoading={driverLoading2} isSubmitting={loading} {...swapProps2} />
+    <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>
