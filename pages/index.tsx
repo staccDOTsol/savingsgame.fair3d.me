@@ -325,6 +325,16 @@ await swap({
   }) 
     console.log('deposit'); 
   
+    const state = await getFairLaunchState(
+      // @ts-ignore
+      anchorWallet,
+      // @ts-ignore
+      fairLaunchId,
+      connection2,
+    );
+
+    setFairLaunch(state);
+
     // @ts-ignore
     await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch);
      
