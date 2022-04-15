@@ -174,7 +174,7 @@ return {
   publicKey: wallet.publicKey,
   signAllTransactions: wallet.signAllTransactions,
   signTransaction: wallet.signTransaction,
-} as typeof anchor.Wallet;
+} as any;
 }, [wallet]);
 
 
@@ -199,6 +199,7 @@ setInterval(async function(){    (async () => {
     const state = await getFairLaunchState(
       // @ts-ignore
       anchorWallet,
+      // @ts-ignore
       fairLaunchId,
       connection2,
     );
@@ -224,6 +225,7 @@ setTimeout(async function(){    (async () => {
     const state = await getFairLaunchState(
       // @ts-ignore
       anchorWallet,
+      // @ts-ignore
       fairLaunchId,
       connection2,
     );

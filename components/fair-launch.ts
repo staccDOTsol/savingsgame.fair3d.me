@@ -59,7 +59,7 @@ export interface FairLaunchState {
 }
 
 export const getFairLaunchState = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunchId: anchor.web3.PublicKey,
   connection: anchor.web3.Connection,
 ): Promise<FairLaunchAccount> => {
@@ -88,7 +88,7 @@ export const getFairLaunchState = async (
 const getSetupForTicketing = async (
   anchorProgram: anchor.Program,
   amount: number,
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ): Promise<{
   remainingAccounts: {
@@ -123,7 +123,7 @@ const getSetupForTicketing = async (
   } else {
     console.log(2)
     const transferAuthority = anchor.web3.Keypair.generate();
-    signers.push(transferAuthority);
+   // signers.push(transferAuthority);
     // NOTE this token impl will not work till you get decimal mantissa and multiply...
     /// ex from cli wont work since you dont have a Signer, but an anchor.Wallet
     /*
@@ -190,7 +190,7 @@ const getSetupForTicketing = async (
 };
 
 export const receiveRefund = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
@@ -337,7 +337,7 @@ console.log(instructions)
 };
 
 export const withdrawFunds = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
