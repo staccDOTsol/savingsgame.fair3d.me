@@ -10,6 +10,7 @@ import { purchaseTicket } from "../components/fair-launch";
 import { LbcInfo } from "../components/LbcInfo";
 import { TokenOffering } from "../components/TokenOffering"
 import { numberWithCommas } from "../utils/numberWithCommas";
+import { FAIR_LAUNCH_PROGRAM } from "../components/fair-launch";
 import {
   Box,
   Center,
@@ -324,9 +325,22 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit'); 
-   
+    const provider = new anchor.Provider(connection2, anchorWallet, {
+      preflightCommitment: 'recent',
+    });
+  
+    const idl = await anchor.Program.fetchIdl(FAIR_LAUNCH_PROGRAM, provider);
+  // @ts-ignore
+    const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey);
+    const state: any = await program.account.fairLaunch.fetch(fairLaunchId);
+    console.log(1)
+  console.log(state)
+   
+    const treasury = await program.provider.connection.getBalance(state.treasury);
+  
+    // @ts-ignore
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey, program);
      
     setIsMinting(false);
     setAlertState({
