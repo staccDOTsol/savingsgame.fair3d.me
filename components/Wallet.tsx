@@ -39,7 +39,7 @@ export const Wallet: FC = ({ children }) => {
 
   return (
     <ConnectionProvider endpoint={DEFAULT_ENDPOINT}>
-      <WalletProvider wallets={wallets} >
+      <WalletProvider wallets={wallets} autoConnect>
         {children}
       </WalletProvider>
     </ConnectionProvider>
