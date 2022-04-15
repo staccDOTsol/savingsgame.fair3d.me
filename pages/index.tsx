@@ -312,7 +312,7 @@ await swap({
   setIsMinting(true)
 
  if (!loading && tokenBondingSdk && min && min2){
-/*
+
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
@@ -326,7 +326,6 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit');  
-    */
   setIsMinting(true);
   try {
 
