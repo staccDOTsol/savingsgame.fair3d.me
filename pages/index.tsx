@@ -316,13 +316,13 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.1,
+    targetAmount: min * 1.2,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2 * 0.94,
+    targetAmount: min2 * 0.90,
     slippage: 0.80
   }) 
     console.log('deposit'); 
@@ -331,7 +331,7 @@ await swap({
 
   
    // @ts-ignore
-    await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), anchorWallet, fairLaunch);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.90), anchorWallet, fairLaunch);
     setIsMinting(false);
     setAlertState({
       open: true,
