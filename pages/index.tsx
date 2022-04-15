@@ -6,7 +6,7 @@ import {
 import { Countdown } from "../components/Countdown";
 import { LbcStatus } from "../components/LbcStatus";
 import { Branding } from "../components/Branding";
-
+import { purchaseTicket } from "../components/fair-launch";
 import { LbcInfo } from "../components/LbcInfo";
 import { TokenOffering } from "../components/TokenOffering"
 import { numberWithCommas } from "../utils/numberWithCommas";
@@ -60,7 +60,6 @@ import { Swap } from '@strata-foundation/react'
 import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
-import { sleep } from "@project-serum/common";
 
 let first = true
 let first2 = true
@@ -183,7 +182,7 @@ return {
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet--rpc.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 //var wallet = useAnchorWallet()
 
 const fairLaunchId = usePublicKey(
@@ -194,7 +193,7 @@ if (first2 && SplTokenBonding){
    
 setInterval(async function(){    (async () => {
   if (f123){
-  //  f123 = false
+    f123 = false
   try {
    
   //  setYourSOLBalance(balance);
@@ -326,74 +325,33 @@ await swap({
     targetAmount: min2 * 0.94,
     slippage: 0.80
   }) 
-    console.log('deposit');  
+    console.log('deposit'); 
   setIsMinting(true);
-
-  
-  const [fairLaunchTicket, bump] = await getFairLaunchTicket(
-    //@ts-ignore
-    fairLaunch.state.tokenMint,
-    // @ts-ignore
-    publicKey,
-  );
-
-  const remainingAccounts = []
-  const instructions: any = []
-  const signers = []
-  // @ts-ignore
-const  amountLamports = Math.ceil(((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94) * 10 ** 9);
-
-console.log(instructions)
-console.log(fairLaunch)
-    console.log('Amount', amountLamports);
-    let done = false;
-    while (done == false){
-      try{
-    if (fairLaunch){
-    await fairLaunch.program.rpc.purchaseTicket(
-      // @ts-ignore
-      bump,
-      new anchor.BN(amountLamports),
-      {
-          // @ts-ignore
-        accounts: {
-          // @ts-ignore
-          fairLaunch: fairLaunch.id,
-          //@ts-ignore
-          treasury: fairLaunch.state.treasury,
-          buyer: publicKey,
-          payer: publicKey,
-          //@ts-ignore
-          systemProgram: anchor.web3.SystemProgram.programId,
-          //@ts-ignore
-          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-          //@ts-ignore
-          clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
-        },
-        //__private: { logAccounts: true },
-        remainingAccounts: [],
-        signers: [],
-        instructions: [],
-      },
-    );
-    done = true
-    }
-    else {
-      await sleep(1000)
-    }
-    } catch(err){
-
-    }
-    }
-    setIsMinting(false);
-    setAlertState({
-      open: true,
-      message: 'Congratulations! contribution mewn nfa',
-      severity: 'success',
-    });
+  await doPurchase()
 }
 };
+async function doPurchase(){
 
+  try {
+
+  let anum = 1 
+  if (fairLaunch){
+    anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
+  }
+     await purchaseTicket( (((anum) + 0.0138) * 0.94), publicKey as PublicKey, fairLaunch);
+     
+     setIsMinting(false);
+     setAlertState({
+       open: true,
+       message: 'Congratulations! contribution mewn nfa',
+       severity: 'success',
+     });
+   } catch (e) {
+     setTimeout(async function(){
+return await doPurchase()
+     }, 550)
+   }
+}
 const BlackBox = ({ children, ...other }: BoxProps) => {
   return (
     <Center

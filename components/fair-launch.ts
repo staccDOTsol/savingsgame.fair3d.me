@@ -203,6 +203,57 @@ export const getFairLaunchTicket = async (
     FAIR_LAUNCH_PROGRAM,
   );
 }
+export const purchaseTicket = async (
+  amount: number,
+  pubkey:  anchor.web3.PublicKey,
+  fairLaunch: FairLaunchAccount | undefined,
+) => {
+
+  const [fairLaunchTicket, bump] = await getFairLaunchTicket(
+    //@ts-ignore
+    fairLaunch.state.tokenMint,
+    pubkey,
+  );
+
+  const remainingAccounts = [], instructions = [], signers = []
+const 
+amountLamports = Math.ceil(amount * LAMPORTS_PER_SOL);
+
+console.log(instructions)
+console.log(fairLaunch)
+  try {
+    console.log('Amount', amountLamports);
+    await fairLaunch.program.rpc.purchaseTicket(
+      // @ts-ignore
+      bump,
+      new anchor.BN(amountLamports),
+      {
+          // @ts-ignore
+        accounts: {
+          fairLaunch: fairLaunch.id,
+          //@ts-ignore
+          treasury: fairLaunch.state.treasury,
+          buyer: pubkey,
+          payer: pubkey,
+          //@ts-ignore
+          systemProgram: anchor.web3.SystemProgram.programId,
+          //@ts-ignore
+          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+          //@ts-ignore
+          clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+        },
+        //__private: { logAccounts: true },
+        remainingAccounts: [],
+        signers: [],
+        instructions: [],
+      },
+    );
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
+};
+
 export const withdrawFunds = async (
   anchorWallet: typeof anchor.Wallet,
   fairLaunch: FairLaunchAccount | undefined,
