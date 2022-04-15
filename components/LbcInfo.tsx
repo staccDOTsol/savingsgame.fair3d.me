@@ -21,6 +21,7 @@ import {
   useDisclosure,
   useInterval,
   VStack,
+  HStack
 } from "@chakra-ui/react";
 import { PublicKey } from "@solana/web3.js";
 import {
@@ -63,6 +64,9 @@ const BigText = ({ children, ...other }: TextProps) => {
   );
 };
 export const LbcInfo = ({
+  members, 
+  staked,
+  total,
     Pot,
   tokenBondingKey,
   useTokenOfferingCurve = false,
@@ -74,7 +78,9 @@ export const LbcInfo = ({
   mintPublicKey,
   mintPublicKey2,
   fanout
-}: {
+}: {members: number, 
+  staked: number,
+  total: number ,
     Pot: number;
   tokenBondingKey: PublicKey;
   useTokenOfferingCurve?: boolean;
@@ -263,7 +269,39 @@ export const LbcInfo = ({
 }
   return (
     <VStack spacing={6} align="stretch">
+{ members && staked && total && 
+<div>
+<Stack direction={["column", "row"]}>
+      <HStack flexGrow={4}>
+      <VStack flexGrow={4}>
 
+<BigText>
+ 
+          <BlackBox w="full" position="relative">{numberWithCommas(members, 0)} </BlackBox> Members
+ </BigText>
+ 
+</VStack>
+</HStack>
+</Stack> 
+  <Stack direction={["column", "row"]}>
+      <HStack flexGrow={4}>
+
+
+
+<BigText>
+ 
+ <BlackBox w="full" position="relative">{numberWithCommas(staked, 4)} Staked </BlackBox> 
+ 
+</BigText>
+
+
+<BigText>
+ 
+ <BlackBox w="full" position="relative">{numberWithCommas(total, 4)} Total</BlackBox> 
+</BigText>
+
+</HStack>
+</Stack></div>}
 <Stack direction={["column", "row"]}>
       <VStack flexGrow={4}>
 
@@ -275,6 +313,7 @@ export const LbcInfo = ({
  </BigText>
 </VStack>
 </Stack>
+
       <Stack direction={["column", "row"]}>
 
       

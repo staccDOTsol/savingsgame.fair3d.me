@@ -3,6 +3,7 @@ import {
   ITokenBonding,
   SplTokenBonding,
 } from "@strata-foundation/spl-token-bonding";
+import { Account } from "@solana/web3.js";
 import { Wallet } from "@project-serum/anchor";
 import { LbcStatus } from "../components/LbcStatus";
 import { Branding } from "../components/Branding";
@@ -11,6 +12,18 @@ import { LbcInfo } from "../components/LbcInfo";
 import { TokenOffering } from "../components/TokenOffering"
 import { numberWithCommas } from "../utils/numberWithCommas";
 import { FAIR_LAUNCH_PROGRAM } from "../components/fair-launch";
+import {Keypair, LAMPORTS_PER_SOL} from "@solana/web3.js";
+import {ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
+import {
+    Fanout,
+    FanoutClient,
+    FanoutMembershipMintVoucher,
+    FanoutMembershipVoucher,
+    FanoutMint,
+    MembershipModel
+} from "@glasseaters/hydra-sdk";
+
+
 import {
   Box,
   Center,
@@ -75,6 +88,9 @@ export const LbcDisplay: NextPage = ({
   const router = useRouter();
   var { publicKey } = useWallet();
 
+  const [members, setMembers] = React.useState<number>();
+  const [staked, setStaked] = React.useState<number>();
+  const [total, setTotal] = React.useState<number>();
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
 const anchorWallet = useMemo(() => {
@@ -93,6 +109,27 @@ const anchorWallet = useMemo(() => {
     signTransaction: wallet.signTransaction,
   } as  anchor.Wallet;
 }, [wallet]);
+setTimeout(async function(){
+    if (anchorWallet){
+  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+
+const fanoutSdk = new FanoutClient(
+  connection2,
+  anchorWallet
+);
+const fanoutAccount = await fanoutSdk.fetch<Fanout>(
+  fanout as PublicKey,
+  
+  Fanout
+)
+console.log(fanoutAccount)
+setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
+// @ts-ignore
+  setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
+  // @ts-ignore
+  setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
+    }
+}, 500)
 
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
@@ -413,9 +450,12 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
                 <Spinner />
               </Center>
             )}
-            {!loading && tokenBondingKey && (
+            {!loading && staked && tokenBondingKey && (
               <VStack align="stretch" spacing={8}>
                 <LbcInfo
+                members={members as number}
+                staked={staked}
+                total={total as number}
                 mintPublicKey={mintPublicKey}
                 mintPublicKey2={mintPublicKey2}
                 fanout={fanout}
@@ -444,6 +484,10 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
 };
 
 export const Home: NextPage = (props) => {
+
+  var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
+
+
   return (
     <DarkMode>
       <LbcDisplay {...props} />
