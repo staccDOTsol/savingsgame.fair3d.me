@@ -324,6 +324,22 @@ await swap({
   setIsMinting(true);
   try {
 
+    const anchorWallet = useMemo(() => {
+      if (
+        !wallet ||
+        !wallet.publicKey ||
+        !wallet.signAllTransactions ||
+        !wallet.signTransaction
+      ) {
+        return;
+      }
+      // @ts-ignore
+      return {
+        publicKey: wallet.publicKey,
+        signAllTransactions: wallet.signAllTransactions,
+        signTransaction: wallet.signTransaction,
+      } as typeof anchor.Wallet;
+      }, [wallet]);
   
    // @ts-ignore
     await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), anchorWallet, fairLaunch);
