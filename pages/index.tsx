@@ -131,6 +131,27 @@ setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
     }
 }, 500)
 
+setInterval(async function(){
+  if (anchorWallet){
+    var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  
+  const fanoutSdk = new FanoutClient(
+    connection2,
+    anchorWallet
+  );
+  const fanoutAccount = await fanoutSdk.fetch<Fanout>(
+    fanout as PublicKey,
+    
+    Fanout
+  )
+  console.log(fanoutAccount)
+  setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
+  // @ts-ignore
+    setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
+    // @ts-ignore
+    setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
+      }
+}, 5500)
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
 
