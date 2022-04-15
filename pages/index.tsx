@@ -122,7 +122,7 @@ if (first){
     }
     }
   
-  }, 760)
+  }, 540)
 setTimeout(async function(){
   if (tokenBondingSdk && !min && !min2){
 
@@ -214,7 +214,7 @@ setInterval(async function(){    (async () => {
 }
 })(); 
 
-}, 1250)
+}, 550)
 setTimeout(async function(){    (async () => {
   if (f123){
     f123 = false
@@ -275,31 +275,7 @@ setTimeout(async function(){
     }
 
   }, 250)
-  setInterval(async function(){
-    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
-    if (pricing && pricing2 && fairLaunch){
-      // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
-      
-      if (amountPerOneSol){
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
-  
-    // @ts-ignore
-    //alert(price) 0.22
-    //alert(price2)0.04 0.28
-    // @ts-ignore
-    // @ts-ignore
-    if (!min2){
-    setMin2((  amountPerOneSol ))
-    }
-    if (!min){
-    setMin((  currentBuyPriceSol ))
-    }
-      }
-    }
-
-  }, 1250)
+ 
   }
   // @ts-ignore
 //setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138)
