@@ -1,6 +1,5 @@
-// @ts-nocheck
 import * as anchor from '@project-serum/anchor';
-
+import { Wallet } from '@strata-foundation/react'
 import { TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { LAMPORTS_PER_SOL, TransactionInstruction } from '@solana/web3.js';
 import {
@@ -59,7 +58,7 @@ export interface FairLaunchState {
 }
 
 export const getFairLaunchState = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunchId: anchor.web3.PublicKey,
   connection: anchor.web3.Connection,
 ): Promise<FairLaunchAccount> => {
@@ -88,7 +87,7 @@ console.log(state)
 const getSetupForTicketing = async (
   anchorProgram: anchor.Program,
   amount: number,
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ): Promise<{
   remainingAccounts: {
@@ -190,7 +189,7 @@ const getSetupForTicketing = async (
 };
 
 export const receiveRefund = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
@@ -277,7 +276,7 @@ export const getFairLaunchTicket = async (
 }
 export const purchaseTicket = async (
   amount: number,
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
@@ -337,7 +336,7 @@ console.log(instructions)
 };
 
 export const withdrawFunds = async (
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {

@@ -325,8 +325,7 @@ await swap({
     console.log('deposit'); 
   
     const state = await getFairLaunchState(
-      // @ts-ignore
-      anchorWallet,
+      wallet,
       // @ts-ignore
       fairLaunchId,
       connection2,
