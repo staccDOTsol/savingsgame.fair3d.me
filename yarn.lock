@@ -1923,10 +1923,10 @@
     "@solana/wallet-adapter-react" "^0.15.3"
     "@solana/web3.js" "^1.36.0"
 
-"@solana/wallet-adapter-react@0.14.0":
-  version "0.14.0"
-  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.14.0.tgz#b1a06793fc6ce8697ff6fec1eb4b6dcf438c83b2"
-  integrity sha512-wVD6XvUQC/kvovAwZHiTd7SlZAjRyrtDb4DBkh5ZJdOqjvtQGNQECkTjZ6YmI2cTjSBz90w2ZItXPmS3FTVJbA==
+"@solana/wallet-adapter-react@0.13.0":
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/@solana/wallet-adapter-react/-/wallet-adapter-react-0.13.0.tgz#12b34616645b779529c3c728fe1f98745e87f144"
+  integrity sha512-hK70WS0Ext6L3P3icttwmo6+J+HfYzWG2bpwA/Gq/QTMdGqFAv7y616+66Pf/Zq2wZDhngD45G0APEVUdSuf9w==
 
 "@solana/wallet-adapter-react@^0.15.1", "@solana/wallet-adapter-react@^0.15.3":
   version "0.15.4"
