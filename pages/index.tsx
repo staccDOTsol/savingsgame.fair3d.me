@@ -180,7 +180,7 @@ return {
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
 //var wallet = useAnchorWallet()
 
 const fairLaunchId = usePublicKey(
