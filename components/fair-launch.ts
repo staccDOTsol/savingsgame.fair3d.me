@@ -283,7 +283,7 @@ console.log(instructions)
         // @ts-ignore
         remainingAccounts,
         // @ts-ignore
-        signers,
+        signers:[anchorWallet],
         instructions: instructions.length > 0 ? instructions : undefined,
       },
     );
