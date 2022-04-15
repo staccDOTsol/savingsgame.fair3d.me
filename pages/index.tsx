@@ -90,7 +90,7 @@ const anchorWallet = useMemo(() => {
     publicKey: wallet.publicKey,
     signAllTransactions: wallet.signAllTransactions,
     signTransaction: wallet.signTransaction,
-  } as typeof anchor.Wallet;
+  } as  anchor.Wallet;
 }, [wallet]);
 
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
@@ -324,17 +324,7 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit'); 
-  
-    const state = await getFairLaunchState(
-      wallet,
-      // @ts-ignore
-      fairLaunchId,
-      connection2,
-    );
-
-    if (!fairLaunch){
-      setFairLaunch(state);
-  }
+   
     // @ts-ignore
     await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey);
      
