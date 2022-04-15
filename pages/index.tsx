@@ -553,7 +553,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 />
                 {!loading123 && min && min2 && 
                 // @ts-ignore
-    <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.2 * 1.01} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>
