@@ -122,7 +122,7 @@ if (first){
     }
     }
   
-  }, 1500)
+  }, 760)
 setTimeout(async function(){
   if (tokenBondingSdk && !min && !min2){
 
