@@ -88,7 +88,7 @@ export const getFairLaunchState = async (
 const getSetupForTicketing = async (
   anchorProgram: anchor.Program,
   amount: number,
-  anchorWallet: anchor.web3.PublicKey,
+  pubkey: anchor.web3.PublicKey,
 ): Promise<{
   remainingAccounts: {
     pubkey: anchor.web3.PublicKey | null;
