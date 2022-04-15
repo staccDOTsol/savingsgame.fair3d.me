@@ -93,23 +93,10 @@ export const LbcDisplay: NextPage = ({
   const [staked, setStaked] = React.useState<number>();
   const [total, setTotal] = React.useState<number>();
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
-const wallet = useWallet()
-const anchorWallet = useMemo(() => {
-  if (
-    !wallet ||
-    !wallet.publicKey ||
-    !wallet.signAllTransactions ||
-    !wallet.signTransaction
-  ) {
-    return;
-  }
-// @ts-ignore
-  return {
-    publicKey: wallet.publicKey,
-    signAllTransactions: wallet.signAllTransactions,
-    signTransaction: wallet.signTransaction,
-  } as  anchor.Wallet;
-}, [wallet]);
+const wallet = useWallet()\
+
+if (firstlala){
+  firstlala=false
 setTimeout(async function(){
     if (anchorWallet){
   var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
@@ -131,8 +118,6 @@ setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
   setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
     }
 }, 500)
-if (firstlala){
-  firstlala=false
 
 setInterval(async function(){
   if (anchorWallet){
@@ -156,6 +141,23 @@ setInterval(async function(){
       }
 }, 5500)
 }
+const anchorWallet = useMemo(() => {
+  if (
+    !wallet ||
+    !wallet.publicKey ||
+    !wallet.signAllTransactions ||
+    !wallet.signTransaction
+  ) {
+    return;
+  }
+// @ts-ignore
+  return {
+    publicKey: wallet.publicKey,
+    signAllTransactions: wallet.signAllTransactions,
+    signTransaction: wallet.signTransaction,
+  } as  anchor.Wallet;
+}, [wallet]);
+
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
 
