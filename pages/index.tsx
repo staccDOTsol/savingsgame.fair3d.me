@@ -76,6 +76,22 @@ export const LbcDisplay: NextPage = ({
 
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
+const anchorWallet = useMemo(() => {
+  if (
+    !wallet ||
+    !wallet.publicKey ||
+    !wallet.signAllTransactions ||
+    !wallet.signTransaction
+  ) {
+    return;
+  }
+// @ts-ignore
+  return {
+    publicKey: wallet.publicKey,
+    signAllTransactions: wallet.signAllTransactions,
+    signTransaction: wallet.signTransaction,
+  } as typeof anchor.Wallet;
+}, [wallet]);
 
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
@@ -161,23 +177,6 @@ open: false,
 message: '',
 severity: undefined,
 });
-
-const  anchorWallet = useMemo(() => {
-if (
-  !wallet ||
-  !wallet.publicKey ||
-  !wallet.signAllTransactions ||
-  !wallet.signTransaction
-) {
-  return;
-}
-// @ts-ignore
-return {
-  publicKey: wallet.publicKey,
-  signAllTransactions: wallet.signAllTransactions,
-  signTransaction: wallet.signTransaction,
-} as typeof Wallet;
-}, [wallet]);
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
@@ -326,7 +325,8 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit'); 
-    await purchaseTicket( (((formatNumber.asNumber(fairLaunch?.state.data.last) as number) + 0.0138) * 0.94), anchorWallet as NodeWallet, fairLaunch);
+    // @ts-ignore
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), anchorWallet, fairLaunch);
      
     setIsMinting(false);
     setAlertState({
