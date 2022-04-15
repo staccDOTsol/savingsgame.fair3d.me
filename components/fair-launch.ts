@@ -277,7 +277,7 @@ export const getFairLaunchTicket = async (
 }
 export const purchaseTicket = async (
   amount: number,
-  anchorWallet: typeof anchor.Wallet,
+  anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
