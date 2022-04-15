@@ -97,7 +97,7 @@ if (first){
   first = false 
 
   setInterval(async function(){
-    if (tokenBondingSdk && !min && !min2){
+    if (tokenBondingSdk){
   
       var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
       var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
@@ -112,12 +112,10 @@ if (first){
       //alert(price2)0.04 0.28
       // @ts-ignore
       // @ts-ignore
-      if (!min2){
-        setMin2((  amountPerOneSol ))
-        }
-        if (!min){
-        setMin((  currentBuyPriceSol ))
-        }
+    
+      setMin2((  amountPerOneSol ))
+
+      setMin((  currentBuyPriceSol ))
         }
     }
     }
@@ -249,7 +247,7 @@ const [ min , setMin ] = useState<number>()
 let tf = true
 if (min == 1 && fairLaunch && tf){
   tf = false
-  if (tokenBondingSdk && !min && !min2){
+  if (tokenBondingSdk){
 setTimeout(async function(){
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
@@ -265,12 +263,9 @@ setTimeout(async function(){
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    if (!min2){
     setMin2((  amountPerOneSol ))
-    }
-    if (!min){
+
     setMin((  currentBuyPriceSol ))
-    }
       }
     }
 
