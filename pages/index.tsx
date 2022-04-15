@@ -93,7 +93,7 @@ export const LbcDisplay: NextPage = ({
   const [staked, setStaked] = React.useState<number>();
   const [total, setTotal] = React.useState<number>();
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
-const wallet = useWallet()\
+const wallet = useWallet()
 
 if (firstlala){
   firstlala=false
