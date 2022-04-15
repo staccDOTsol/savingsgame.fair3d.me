@@ -101,14 +101,6 @@ const getSetupForTicketing = async (
   amountLamports: number;
 }> => {
   
-  if (!fairLaunch) {
-    return {
-      remainingAccounts: [],
-      instructions: [],
-      signers: [],
-      amountLamports: 0,
-    };
-  }
   const remainingAccounts = [];
   const instructions = [];
   const signers = [];
