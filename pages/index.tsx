@@ -162,7 +162,6 @@ severity: undefined,
 });
 let anchorWallet: anchor.Wallet
 
-setTimeout(async function(){ 
   // @ts-ignore
   anchorWallet = useMemo(() => {
 if (
@@ -180,7 +179,6 @@ return {
   signTransaction: wallet.signTransaction,
 } as anchor.Wallet;
 }, [wallet]);
-}, 1500)
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
