@@ -3,11 +3,6 @@ import * as anchor from '@project-serum/anchor';
 import { usePublicKey } from '@strata-foundation/react';
 import { TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { LAMPORTS_PER_SOL, TransactionInstruction } from '@solana/web3.js';
-import {
-  createAssociatedTokenAccountInstruction,
-  getAtaForMint,
-  getFairLaunchTicketSeqLookup,
-} from './utils';
 
 export const FAIR_LAUNCH_PROGRAM = new anchor.web3.PublicKey(
   'knGjLrbC9CBfMmfUzPkBM5ceXUNar2Ape13ZvkuXGzW',
@@ -127,82 +122,6 @@ const getSetupForTicketing = async (
   };
 };
 
-export const receiveRefund = async (
-  anchorWallet: anchor.Wallet,
-  fairLaunch: FairLaunchAccount | undefined,
-) => {
-  if (!fairLaunch) {
-    return;
-  }
-
-  const buyerTokenAccount = (
-    await getAtaForMint(fairLaunch.state.tokenMint, anchorWallet.publicKey)
-  )[0];
-
-  const transferAuthority = anchor.web3.Keypair.generate();
-
-  const signers = [transferAuthority];
-  const instructions = [
-    Token.createApproveInstruction(
-      TOKEN_PROGRAM_ID,
-      buyerTokenAccount,
-      transferAuthority.publicKey,
-      anchorWallet.publicKey,
-      [],
-      1,
-    ),
-  ];
-
-  const remainingAccounts = [];
-
-  if (fairLaunch.state.treasuryMint) {
-    remainingAccounts.push({
-      pubkey: fairLaunch.state.treasuryMint,
-      isWritable: true,
-      isSigner: false,
-    });
-    remainingAccounts.push({
-      pubkey: (
-        await getAtaForMint(
-          fairLaunch.state.treasuryMint,
-          anchorWallet.publicKey,
-        )
-      )[0],
-      isWritable: true,
-      isSigner: false,
-    });
-  }
-
-  console.log(
-    'tfr',
-    fairLaunch.state.treasury.toBase58(),
-    anchorWallet.publicKey.toBase58(),
-    buyerTokenAccount.toBase58(),
-  );
-  await fairLaunch.program.rpc.receiveRefund({
-    accounts: {
-      fairLaunch: fairLaunch.id,
-      treasury: fairLaunch.state.treasury,
-      buyer: anchorWallet.publicKey,
-      buyerTokenAccount,
-      transferAuthority: transferAuthority.publicKey,
-      tokenMint: fairLaunch.state.tokenMint,
-      tokenProgram: TOKEN_PROGRAM_ID,
-      systemProgram: anchor.web3.SystemProgram.programId,
-      clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
-    },
-// @ts-ignore
-    __private: { logAccounts: true },
-    remainingAccounts,
-    instructions,
-    signers,
-  });
-};
-
-const fairLaunchId = new anchor.web3.PublicKey(
-  "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
-);
-
 
 export const getFairLaunchTicket = async (
   tokenMint: anchor.web3.PublicKey,
@@ -285,32 +204,6 @@ export const withdrawFunds = async (
   // TODO: create sequence ticket
 
   const remainingAccounts = [];
-
-  //@ts-ignore
-  if (fairLaunch.state.treasuryMint) {
-    remainingAccounts.push({
-      //@ts-ignore
-      pubkey: fairLaunch.state.treasuryMint,
-      isWritable: true,
-      isSigner: false,
-    });
-    remainingAccounts.push({
-      pubkey: (
-        await getAtaForMint(
-          //@ts-ignore
-          fairLaunch.state.treasuryMint,
-          anchorWallet.publicKey,
-        )
-      )[0],
-      isWritable: true,
-      isSigner: false,
-    });
-    remainingAccounts.push({
-      pubkey: TOKEN_PROGRAM_ID,
-      isWritable: false,
-      isSigner: false,
-    });
-  }
 
   await fairLaunch.program.rpc.withdrawFunds({
     accounts: {
