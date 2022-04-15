@@ -185,7 +185,7 @@ const [isMinting, setIsMinting] = useState(false); // true when user got to pres
   var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
 //var wallet = useAnchorWallet()
 
-const fairLaunchId = usePublicKey(
+const fairLaunchId = new PublicKey(
 "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
 if (first2 && SplTokenBonding){
