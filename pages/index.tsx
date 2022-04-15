@@ -324,24 +324,9 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit'); 
-   var anchorWallet2 = useMemo(() => {
-      if (
-        !wallet ||
-        !wallet.publicKey ||
-        !wallet.signAllTransactions ||
-        !wallet.signTransaction
-      ) {
-        return;
-      }
+  
     // @ts-ignore
-      return {
-        publicKey: wallet.publicKey,
-        signAllTransactions: wallet.signAllTransactions,
-        signTransaction: wallet.signTransaction,
-      } as typeof anchor.Wallet;
-    }, [wallet]);
-    // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), anchorWallet2, fairLaunch);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch);
      
     setIsMinting(false);
     setAlertState({
