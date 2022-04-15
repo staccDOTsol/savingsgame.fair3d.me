@@ -216,7 +216,7 @@ setInterval(async function(){    (async () => {
 }
 })(); 
 
-}, 550)
+}, 2550)
 setTimeout(async function(){    (async () => {
   if (f123){
     f123 = false
@@ -312,7 +312,7 @@ await swap({
   setIsMinting(true)
 
  if (!loading && tokenBondingSdk && min && min2){
-
+/*
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
@@ -324,7 +324,7 @@ await swap({
     tokenBonding: baseBondingKey,
     targetAmount: min2 * 0.94,
     slippage: 0.80
-  }) 
+  }) */
     console.log('deposit'); 
   setIsMinting(true);
   await doPurchase()
