@@ -160,7 +160,11 @@ open: false,
 message: '',
 severity: undefined,
 });
-const anchorWallet = useMemo(() => {
+let anchorWallet: anchor.Wallet
+
+setTimeout(async function(){ 
+  // @ts-ignore
+  anchorWallet = useMemo(() => {
 if (
   !wallet ||
   !wallet.publicKey ||
@@ -174,9 +178,9 @@ return {
   publicKey: wallet.publicKey,
   signAllTransactions: wallet.signAllTransactions,
   signTransaction: wallet.signTransaction,
-} as any;
+} as anchor.Wallet;
 }, [wallet]);
-
+}, 1500)
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
@@ -328,7 +332,7 @@ await swap({
 
   
    // @ts-ignore
-    await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), wallet, fairLaunch);
+    await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), anchorWallet, fairLaunch);
     setIsMinting(false);
     setAlertState({
       open: true,
