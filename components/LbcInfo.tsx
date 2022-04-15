@@ -298,7 +298,7 @@ export const LbcInfo = ({
               <BigText>
                 {isNaN(priceToUse)
                   ? "Not Started"
-                  : `@${numberWithCommas(priceToUse * 1.1, 4)} ${
+                  : `@${numberWithCommas(priceToUse * 1.1 * 1.1, 4)} ${
                       metadata?.data.symbol
                     }`}
               </BigText> </Button>
