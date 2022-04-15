@@ -193,7 +193,7 @@ if (first2 && SplTokenBonding){
    
 setInterval(async function(){    (async () => {
   if (f123){
-    f123 = false
+    //f123 = false
   try {
    
   //  setYourSOLBalance(balance);
