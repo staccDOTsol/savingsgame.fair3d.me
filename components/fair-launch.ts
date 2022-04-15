@@ -215,12 +215,10 @@ export const purchaseTicket = async (
     pubkey,
   );
 
-  const { remainingAccounts, instructions, signers, amountLamports } =
-    await getSetupForTicketing(
-      fairLaunch.program,
-      amount,
-      pubkey,
-    );
+  const remainingAccounts, instructions, signers = []
+const 
+amountLamports = Math.ceil(amount * LAMPORTS_PER_SOL);
+
 console.log(instructions)
 console.log(fairLaunch)
   try {
@@ -232,13 +230,10 @@ console.log(fairLaunch)
       {
           // @ts-ignore
         accounts: {
-          //@ts-ignore
           fairLaunch: fairLaunch.id,
           //@ts-ignore
           treasury: fairLaunch.state.treasury,
-          //@ts-ignore
           buyer: pubkey,
-          //@ts-ignore
           payer: pubkey,
           //@ts-ignore
           systemProgram: anchor.web3.SystemProgram.programId,
@@ -248,11 +243,9 @@ console.log(fairLaunch)
           clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
         },
         //__private: { logAccounts: true },
-        // @ts-ignore
         remainingAccounts,
-        // @ts-ignore
         signers,
-        instructions: instructions.length > 0 ? instructions : undefined,
+        instructions: [],
       },
     );
   } catch (e) {
