@@ -369,7 +369,7 @@ console.log(fairLaunch)
         },
         //__private: { logAccounts: true },
         remainingAccounts: [],
-        signers: [anchorWallet],
+        signers: [],
         instructions: [],
       },
     );
