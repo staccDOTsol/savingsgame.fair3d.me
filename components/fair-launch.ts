@@ -284,7 +284,7 @@ console.log(instructions)
         remainingAccounts,
         // @ts-ignore
         signers:[anchorWallet],
-        instructions: instructions.length > 0 ? instructions : undefined,
+        instructions: instructions.length > 0 ? instructions : [],
       },
     );
   } catch (e) {
