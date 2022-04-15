@@ -101,15 +101,85 @@ const getSetupForTicketing = async (
   amountLamports: number;
 }> => {
   
+  if (!fairLaunch) {
+    return {
+      remainingAccounts: [],
+      instructions: [],
+      signers: [],
+      amountLamports: 0,
+    };
+  }
   const remainingAccounts = [];
   const instructions = [];
   const signers = [];
 
   let amountLamports = 0;
   //@ts-ignore
+  if (!fairLaunch.state.treasuryMint) {
+    console.log(1)
    
       amountLamports = Math.ceil(amount * LAMPORTS_PER_SOL);
     
+  } else {
+    console.log(2)
+    const transferAuthority = anchor.web3.Keypair.generate();
+    signers.push(transferAuthority);
+    // NOTE this token impl will not work till you get decimal mantissa and multiply...
+    /// ex from cli wont work since you dont have a Signer, but an anchor.Wallet
+    /*
+    const token = new Token(
+        anchorProgram.provider.connection,
+        //@ts-ignore
+        fairLaunchObj.treasuryMint,
+        TOKEN_PROGRAM_ID,
+        walletKeyPair,
+      );
+      const mintInfo = await token.getMintInfo();
+      amountNumber = Math.ceil(amountNumber * 10 ** mintInfo.decimals);
+    */
+    instructions.push(
+      Token.createApproveInstruction(
+        TOKEN_PROGRAM_ID,
+        //@ts-ignore
+        fairLaunch.state.treasuryMint,
+        transferAuthority.publicKey,
+        anchorWallet.publicKey,
+        [],
+        //@ts-ignore
+
+        // TODO: get mint decimals
+        amountNumber + fairLaunch.state.data.fees.toNumber(),
+      ),
+    );
+
+    remainingAccounts.push({
+      //@ts-ignore
+      pubkey: fairLaunch.state.treasuryMint,
+      isWritable: true,
+      isSigner: false,
+    });
+    remainingAccounts.push({
+      pubkey: (
+        await getAtaForMint(
+          //@ts-ignore
+          fairLaunch.state.treasuryMint,
+          anchorWallet.publicKey,
+        )
+      )[0],
+      isWritable: true,
+      isSigner: false,
+    });
+    remainingAccounts.push({
+      pubkey: transferAuthority.publicKey,
+      isWritable: false,
+      isSigner: true,
+    });
+    remainingAccounts.push({
+      pubkey: TOKEN_PROGRAM_ID,
+      isWritable: false,
+      isSigner: false,
+    });
+  }
 
   return {
     remainingAccounts,
@@ -119,8 +189,80 @@ const getSetupForTicketing = async (
   };
 };
 
+export const receiveRefund = async (
+  anchorWallet: typeof anchor.Wallet,
+  fairLaunch: FairLaunchAccount | undefined,
+) => {
+  if (!fairLaunch) {
+    return;
+  }
+
+  const buyerTokenAccount = (
+    await getAtaForMint(fairLaunch.state.tokenMint, anchorWallet.publicKey)
+  )[0];
+
+  const transferAuthority = anchor.web3.Keypair.generate();
+
+  const signers = [transferAuthority];
+  const instructions = [
+    Token.createApproveInstruction(
+      TOKEN_PROGRAM_ID,
+      buyerTokenAccount,
+      transferAuthority.publicKey,
+      anchorWallet.publicKey,
+      [],
+      1,
+    ),
+  ];
+
+  const remainingAccounts = [];
+
+  if (fairLaunch.state.treasuryMint) {
+    remainingAccounts.push({
+      pubkey: fairLaunch.state.treasuryMint,
+      isWritable: true,
+      isSigner: false,
+    });
+    remainingAccounts.push({
+      pubkey: (
+        await getAtaForMint(
+          fairLaunch.state.treasuryMint,
+          anchorWallet.publicKey,
+        )
+      )[0],
+      isWritable: true,
+      isSigner: false,
+    });
+  }
+
+  console.log(
+    'tfr',
+    fairLaunch.state.treasury.toBase58(),
+    anchorWallet.publicKey.toBase58(),
+    buyerTokenAccount.toBase58(),
+  );
+  await fairLaunch.program.rpc.receiveRefund({
+    accounts: {
+      fairLaunch: fairLaunch.id,
+      treasury: fairLaunch.state.treasury,
+      buyer: anchorWallet.publicKey,
+      buyerTokenAccount,
+      transferAuthority: transferAuthority.publicKey,
+      tokenMint: fairLaunch.state.tokenMint,
+      tokenProgram: TOKEN_PROGRAM_ID,
+      systemProgram: anchor.web3.SystemProgram.programId,
+      clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+    },
+// @ts-ignore
+    __private: { logAccounts: true },
+    remainingAccounts,
+    instructions,
+    signers,
+  });
+};
+
 const fairLaunchId = new anchor.web3.PublicKey(
-  "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
+  "3e4X7HFK7nVycvoKc3SgHMj5XtYndEQNAtwv6KtJEfSz",
 );
 
 
@@ -158,35 +300,6 @@ export const purchaseTicket = async (
 console.log(instructions)
   try {
     console.log('Amount', amountLamports);
-    console.log(
-      // @ts-ignore
-      bump,
-      new anchor.BN(amountLamports),
-      {
-          // @ts-ignore
-        accounts: {
-          //@ts-ignore
-          fairLaunch: fairLaunch.id,
-          //@ts-ignore
-          treasury: fairLaunch.state.treasury,
-          //@ts-ignore
-          buyer: anchorWallet.publicKey,
-          //@ts-ignore
-          payer: anchorWallet.publicKey,
-          //@ts-ignore
-          systemProgram: anchor.web3.SystemProgram.programId,
-          //@ts-ignore
-          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
-          //@ts-ignore
-          clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
-        },
-        //__private: { logAccounts: true },
-        // @ts-ignore
-        remainingAccounts,
-        // @ts-ignore
-        signers,
-        instructions: instructions.length > 0 ? instructions : [],
-      },)
     await fairLaunch.program.rpc.purchaseTicket(
       // @ts-ignore
       bump,
@@ -213,8 +326,8 @@ console.log(instructions)
         // @ts-ignore
         remainingAccounts,
         // @ts-ignore
-        signers:[],
-        instructions: instructions.length > 0 ? instructions : [],
+        signers,
+        instructions: instructions.length > 0 ? instructions : undefined,
       },
     );
   } catch (e) {
