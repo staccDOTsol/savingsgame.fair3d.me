@@ -95,7 +95,24 @@ export const LbcDisplay: NextPage = ({
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
 
-if (firstlala){
+
+const anchorWallet = useMemo(() => {
+  if (
+    !wallet ||
+    !wallet.publicKey ||
+    !wallet.signAllTransactions ||
+    !wallet.signTransaction
+  ) {
+    return;
+  }
+// @ts-ignore
+  return {
+    publicKey: wallet.publicKey,
+    signAllTransactions: wallet.signAllTransactions,
+    signTransaction: wallet.signTransaction,
+  } as  anchor.Wallet;
+}, [wallet]);
+if (firstlala && anchorWallet){
   firstlala=false
 setTimeout(async function(){
     if (anchorWallet){
@@ -141,23 +158,6 @@ setInterval(async function(){
       }
 }, 5500)
 }
-const anchorWallet = useMemo(() => {
-  if (
-    !wallet ||
-    !wallet.publicKey ||
-    !wallet.signAllTransactions ||
-    !wallet.signTransaction
-  ) {
-    return;
-  }
-// @ts-ignore
-  return {
-    publicKey: wallet.publicKey,
-    signAllTransactions: wallet.signAllTransactions,
-    signTransaction: wallet.signTransaction,
-  } as  anchor.Wallet;
-}, [wallet]);
-
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
 
