@@ -64,14 +64,14 @@ import styles from '../styles/Home.module.css';
 let first = true
 let first2 = true
 let f123 = true
-
+var publicKey
 export const LbcDisplay: NextPage = ({
   name,
   image,
   description,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
-  const { publicKey } = useWallet();
+  var { publicKey } = useWallet();
 
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
@@ -331,7 +331,7 @@ await swap({
 
   
    // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94), wallet.publicKey, fairLaunch);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94), publicKey, fairLaunch);
     setIsMinting(false);
     setAlertState({
       open: true,
