@@ -312,11 +312,11 @@ await swap({
   setIsMinting(true)
 
  if (!loading && tokenBondingSdk && min && min2){
-   
+
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.2,
+    targetAmount: min * 1.1,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
