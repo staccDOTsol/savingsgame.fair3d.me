@@ -309,6 +309,7 @@ console.log(instructions)
           fairLaunch: fairLaunch.id,
           treasury: fairLaunch.state.treasury,
           payer: pubkey,
+          buyer: pubkey,
           systemProgram: anchor.web3.SystemProgram.programId,
           rent: anchor.web3.SYSVAR_RENT_PUBKEY,
           clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
