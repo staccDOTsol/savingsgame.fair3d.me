@@ -461,9 +461,9 @@ React.useEffect(() => {
   }
 }, [tokenBonding, tradingMints, tokenBonding2]);
 const identity = () => {};
-var driverLoading: boolean 
-var swapProps: any 
-try {
+const [ driverLoading2, setDriverLoading] = useState(true)
+const [ swapProps2, setSwapProps] : any = useState() 
+try{
 // @ts-ignore
 var { loading: driverLoading, ...swapProps } = useSwapDriver({
   tradingMints,
@@ -487,12 +487,12 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
   tokenBondingKey: tokenBondingKey,
   
 });
-swapProps.pricing.buyTargetAmount(min as number * 1.2)
+setDriverLoading(driverLoading)
+setSwapProps(swapProps)
+} catch (err){
 
 }
-catch (err){
 
-}
   return (
     
     <Box
@@ -533,7 +533,7 @@ catch (err){
                 <Spinner />
               </Center>
             )}
-            {!loading && staked && tokenBondingKey && min && (
+            {!loading && staked && tokenBondingKey  && (
               <VStack align="stretch" spacing={8}>
                 <LbcInfo
                 members={members as number}
@@ -542,7 +542,7 @@ catch (err){
                 mintPublicKey={mintPublicKey}
                 mintPublicKey2={mintPublicKey2}
                 fanout={fanout}
-                min={min}
+                min={min as number}
                 fairLaunch={fairLaunch}
                 onDeposit={onDeposit}
               wallet={wallet}
@@ -555,7 +555,7 @@ catch (err){
                 />
                 {!loading123 && min && min2 && 
                 // @ts-ignore
-    <SwapForm min={min * 1.2 * 1.0091365438} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.2 * 1.01} isLoading={driverLoading2} isSubmitting={loading} {...swapProps2} />
                 }
                 <Branding />
               </VStack>

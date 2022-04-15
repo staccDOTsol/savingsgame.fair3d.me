@@ -8,7 +8,6 @@
         "pages",
         "public",
         "styles",
-        ".eslintrc.json",
         "LICENSE",
         "next.config.js",
         "next-env.d.ts",
@@ -50,8 +49,6 @@
     "devDependencies": {
         "@types/node": "17.0.8",
         "@types/react": "17.0.38",
-        "eslint": "^8.6.0",
-        "eslint-config-next": "^12.0.7",
         "shx": "^0.3.3",
         "typescript": "~4.4.4"
     }
