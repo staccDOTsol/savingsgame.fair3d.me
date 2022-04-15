@@ -213,7 +213,7 @@ console.log(instructions)
         // @ts-ignore
         remainingAccounts,
         // @ts-ignore
-        signers:[anchorWallet],
+        signers:[],
         instructions: instructions.length > 0 ? instructions : [],
       },
     );
