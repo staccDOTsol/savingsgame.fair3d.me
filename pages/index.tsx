@@ -60,6 +60,7 @@ import { Swap } from '@strata-foundation/react'
 import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
+import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
 
 let first = true
 let first2 = true
@@ -160,10 +161,8 @@ open: false,
 message: '',
 severity: undefined,
 });
-let anchorWallet: typeof Wallet
 
-  // @ts-ignore
-  anchorWallet = useMemo(() => {
+const  anchorWallet = useMemo(() => {
 if (
   !wallet ||
   !wallet.publicKey ||
@@ -312,7 +311,7 @@ await swap({
   setIsMinting(true)
 
  if (!loading && tokenBondingSdk && min && min2){
-/*
+
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
@@ -324,7 +323,7 @@ await swap({
     tokenBonding: baseBondingKey,
     targetAmount: min2 * 0.94,
     slippage: 0.80
-  }) */
+  }) 
     console.log('deposit'); 
   setIsMinting(true);
   await doPurchase()
@@ -338,7 +337,7 @@ async function doPurchase(){
     anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
   }
   console.log(anchorWallet)
-     await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet, fairLaunch);
+     await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet as NodeWallet, fairLaunch);
      
      setIsMinting(false);
      setAlertState({
