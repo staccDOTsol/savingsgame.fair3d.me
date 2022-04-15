@@ -201,9 +201,9 @@ setInterval(async function(){    (async () => {
       fairLaunchId,
       connection2,
     );
-
+if (!fairLaunch){
     setFairLaunch(state);
-
+}
     console.log(fairLaunch?.state)
 
   } catch (e) {
@@ -228,8 +228,9 @@ setTimeout(async function(){    (async () => {
       connection2,
     );
 
-    setFairLaunch(state);
-
+    if (!fairLaunch){
+      setFairLaunch(state);
+  }
     console.log(fairLaunch?.state)
 
   } catch (e) {
@@ -331,8 +332,9 @@ await swap({
       connection2,
     );
 
-    setFairLaunch(state);
-
+    if (!fairLaunch){
+      setFairLaunch(state);
+  }
     // @ts-ignore
     await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey);
      
