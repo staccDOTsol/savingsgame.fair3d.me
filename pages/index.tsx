@@ -338,7 +338,7 @@ async function doPurchase(){
   if (fairLaunch){
     anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
   }
-     await purchaseTicket( (((anum) + 0.0138) * 0.94), publicKey as PublicKey, fairLaunch);
+     await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet, fairLaunch);
      
      setIsMinting(false);
      setAlertState({
@@ -362,7 +362,7 @@ try{
     if (fairLaunch){
       anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
     }
-    await purchaseTicket( (((anum) + 0.0138) * 0.94), publicKey as PublicKey, fairLaunch);
+    await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet, fairLaunch);
      
     setIsMinting(false);
     setAlertState({
