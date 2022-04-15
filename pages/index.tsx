@@ -3,7 +3,7 @@ import {
   ITokenBonding,
   SplTokenBonding,
 } from "@strata-foundation/spl-token-bonding";
-import { Countdown } from "../components/Countdown";
+import { Wallet } from "@project-serum/anchor";
 import { LbcStatus } from "../components/LbcStatus";
 import { Branding } from "../components/Branding";
 import { purchaseTicket } from "../components/fair-launch";
@@ -160,7 +160,7 @@ open: false,
 message: '',
 severity: undefined,
 });
-let anchorWallet: anchor.Wallet
+let anchorWallet: typeof Wallet
 
   // @ts-ignore
   anchorWallet = useMemo(() => {
@@ -177,7 +177,7 @@ return {
   publicKey: wallet.publicKey,
   signAllTransactions: wallet.signAllTransactions,
   signTransaction: wallet.signTransaction,
-} as anchor.Wallet;
+} as typeof Wallet;
 }, [wallet]);
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
@@ -387,7 +387,7 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container mt={"35px"} justify="stretch" maxW="460px">
+      <Container mt={"35px"} maxW="460px">
       
     <VStack spacing={4} align="stretch">
           <Heading mb={2} fontSize="24px" fontWeight={600}>
