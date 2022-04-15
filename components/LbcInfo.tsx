@@ -108,7 +108,7 @@ export const LbcInfo = ({
     useTokenOfferingCurve
   );
 
-  const priceToUse = inputPrice || price;
+  const priceToUse = inputPrice;
 
   const { info: curve } = useCurve(tokenBonding?.curve);
   
