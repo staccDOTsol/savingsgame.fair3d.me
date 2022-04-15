@@ -60,6 +60,7 @@ import { Swap } from '@strata-foundation/react'
 import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
+import { sleep } from "@project-serum/common";
 
 let first = true
 let first2 = true
@@ -376,6 +377,9 @@ console.log(fairLaunch)
       },
     );
     done = true
+    }
+    else {
+      await sleep(1000)
     }
     } catch(err){
 
