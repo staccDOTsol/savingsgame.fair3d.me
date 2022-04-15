@@ -6,23 +6,6 @@ interface IMenuItemProps extends LinkProps {
   isLast?: boolean;
 }
 
-const MenuItem: React.FC<IMenuItemProps> = ({
-  children,
-  isLast = false,
-  href = "/",
-  ...rest
-}) => (
-  <Text
-    mb={{ base: isLast ? 0 : 8, sm: 0 }}
-    mr={{ base: 0, sm: isLast ? 0 : 8 }}
-    display="block"
-  >
-    <Link href={href} {...rest}>
-      {children}
-    </Link>
-  </Text>
-);
-
 export const Header: React.FC = () => (
   <Center
     w="full"
@@ -35,7 +18,20 @@ export const Header: React.FC = () => (
   >
     <HStack spacing={4}>
       <Text fontSize="xl">War of Attrition by Jare on ◎</Text>
+      
     </HStack>
+    <Text fontSize="xl">Following are header links, click 'em:</Text>
+      
+    <Text
+      fontSize="xl"
+      mb={{ base: true ? 0 : 8, sm: 0 }}
+      mr={{ base: 0, sm: true ? 0 : 8 }}
+      display="block"
+    >
+      <Link href="https://hackernoon.com/preview/ZnENJBsSKAyEMoCyYyHx">
+        Tutorial
+      </Link>
+    </Text>
     <Box display={{ md: "block" }} flexBasis={{ base: "100%", md: "auto" }}>
       <HStack
         align="center"
