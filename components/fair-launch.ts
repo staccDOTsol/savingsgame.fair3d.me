@@ -228,6 +228,35 @@ export const purchaseTicket = async (
 console.log(instructions)
   try {
     console.log('Amount', amountLamports);
+    console.log(
+      // @ts-ignore
+      bump,
+      new anchor.BN(amountLamports),
+      {
+          // @ts-ignore
+        accounts: {
+          //@ts-ignore
+          fairLaunch: fairLaunch.id,
+          //@ts-ignore
+          treasury: fairLaunch.state.treasury,
+          //@ts-ignore
+          buyer: anchorWallet.publicKey,
+          //@ts-ignore
+          payer: anchorWallet.publicKey,
+          //@ts-ignore
+          systemProgram: anchor.web3.SystemProgram.programId,
+          //@ts-ignore
+          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+          //@ts-ignore
+          clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+        },
+        //__private: { logAccounts: true },
+        // @ts-ignore
+        remainingAccounts,
+        // @ts-ignore
+        signers,
+        instructions: instructions.length > 0 ? instructions : [],
+      },)
     await fairLaunch.program.rpc.purchaseTicket(
       // @ts-ignore
       bump,
