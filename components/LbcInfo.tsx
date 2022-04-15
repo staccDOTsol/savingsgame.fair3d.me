@@ -41,6 +41,7 @@ import { numberWithCommas } from "../utils/numberWithCommas";
 import { BondingPlot } from "./BondingPlot";
 import { Anchor } from "antd";
 
+let first = true;
 const BlackBox = ({ children, ...other }: BoxProps) => {
   return (
     <Center
@@ -61,7 +62,6 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-let first = true;
 export const LbcInfo = ({
     Pot,
   tokenBondingKey,
@@ -247,7 +247,18 @@ export const LbcInfo = ({
   catch (err){
   
   }
-    },  3500)
+    setInterval(async () => {
+      try {
+      // @ts-ignore
+  var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey, mintKey)
+  // @ts-ignore
+  setBalance( tokenAmount.uiAmount)
+  }
+  catch (err){
+  
+  }
+    },  3500)    },  3500)
+
 
 }
   return (
