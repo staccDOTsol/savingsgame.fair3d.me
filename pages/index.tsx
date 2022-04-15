@@ -186,6 +186,7 @@ setTimeout(async function(){    (async () => {
   //  setYourSOLBalance(balance);
 
     const state = await getFairLaunchState(
+      // @ts-ignore
       anchorWallet,
       fairLaunchId,
       connection2,
@@ -207,6 +208,7 @@ setInterval(async function(){
     //  setYourSOLBalance(balance);
   
       const state = await getFairLaunchState(
+        // @ts-ignore
         anchorWallet,
         fairLaunchId,
         connection2,
