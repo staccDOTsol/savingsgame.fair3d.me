@@ -182,7 +182,7 @@ return {
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet--rpc.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 //var wallet = useAnchorWallet()
 
 const fairLaunchId = usePublicKey(
@@ -324,14 +324,14 @@ await swap({
     tokenBonding: baseBondingKey,
     targetAmount: min2 * 0.94,
     slippage: 0.80
-  })
+  }) 
     console.log('deposit'); 
   setIsMinting(true);
   try {
 
   
    // @ts-ignore
-    await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), wallet as anchor.Wallet, fairLaunch);
+    await purchaseTicket( (formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138 * 0.94), anchorWallet, fairLaunch);
     setIsMinting(false);
     setAlertState({
       open: true,
