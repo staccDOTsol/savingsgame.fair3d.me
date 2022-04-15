@@ -215,7 +215,7 @@ export const purchaseTicket = async (
     pubkey,
   );
 
-  const remainingAccounts, instructions, signers = []
+  const remainingAccounts = [], instructions = [], signers = []
 const 
 amountLamports = Math.ceil(amount * LAMPORTS_PER_SOL);
 
