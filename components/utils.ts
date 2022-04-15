@@ -1,6 +1,8 @@
 import * as anchor from '@project-serum/anchor';
 import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 import { SystemProgram } from '@solana/web3.js';
+import { usePublicKey } from '@strata-foundation/react';
+
 import {
   LAMPORTS_PER_SOL,
   SYSVAR_RENT_PUBKEY,

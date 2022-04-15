@@ -1,6 +1,6 @@
 // @ts-nocheck
 import * as anchor from '@project-serum/anchor';
-
+import { usePublicKey } from '@strata-foundation/react';
 import { TOKEN_PROGRAM_ID, Token } from '@solana/spl-token';
 import { LAMPORTS_PER_SOL, TransactionInstruction } from '@solana/web3.js';
 import {
@@ -72,7 +72,7 @@ export const getFairLaunchState = async (
   const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
   const state: any = await program.account.fairLaunch.fetch(fairLaunchId);
   console.log(1)
-console.log(state)
+//console.log(state)
  
   const treasury = await program.provider.connection.getBalance(state.treasury);
 

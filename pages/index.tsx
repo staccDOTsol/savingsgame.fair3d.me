@@ -122,7 +122,7 @@ if (first){
     }
     }
   
-  }, 5500)
+  }, 1500)
 setTimeout(async function(){
   if (tokenBondingSdk && !min && !min2){
 
@@ -149,7 +149,7 @@ setTimeout(async function(){
   }
   }
   
-}, 5500)
+}, 1500)
 
 }
 
@@ -184,12 +184,37 @@ const [isMinting, setIsMinting] = useState(false); // true when user got to pres
   var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 //var wallet = useAnchorWallet()
 
-const fairLaunchId = new anchor.web3.PublicKey(
+const fairLaunchId = usePublicKey(
 "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
 if (first2){
   first2=  false
-  
+   
+setInterval(async function(){    (async () => {
+  if (f123){
+    f123 = false
+  try {
+   
+  //  setYourSOLBalance(balance);
+
+    const state = await getFairLaunchState(
+      // @ts-ignore
+      anchorWallet,
+      fairLaunchId,
+      connection2,
+    );
+
+    setFairLaunch(state);
+
+    console.log(fairLaunch?.state)
+
+  } catch (e) {
+    
+  }
+}
+})(); 
+
+}, 1250)
 setTimeout(async function(){    (async () => {
   if (f123){
     f123 = false
@@ -212,34 +237,9 @@ setTimeout(async function(){    (async () => {
     
   }
 }
-})();
+})(); 
 
-setInterval(async function(){
-  (async () => {
-    if (!fairLaunch){
-
-    try {
-     
-    //  setYourSOLBalance(balance);
-  
-      const state = await getFairLaunchState(
-        // @ts-ignore
-        anchorWallet,
-        fairLaunchId,
-        connection2,
-      );
-  
-      setFairLaunch(state);
-  
-      console.log(fairLaunch?.state)
-
-    } catch (e) {
-      
-    }
-  }
-  })();
-}, 1500)
-}, 1000)
+}, 250)
 
 }
 
@@ -275,6 +275,31 @@ setTimeout(async function(){
     }
 
   }, 250)
+  setInterval(async function(){
+    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
+    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+    if (pricing && pricing2 && fairLaunch){
+      // @ts-ignore
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      
+      if (amountPerOneSol){
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+  
+    // @ts-ignore
+    //alert(price) 0.22
+    //alert(price2)0.04 0.28
+    // @ts-ignore
+    // @ts-ignore
+    if (!min2){
+    setMin2((  amountPerOneSol ))
+    }
+    if (!min){
+    setMin((  currentBuyPriceSol ))
+    }
+      }
+    }
+
+  }, 1250)
   }
   // @ts-ignore
 //setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138)
