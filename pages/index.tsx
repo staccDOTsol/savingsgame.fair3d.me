@@ -182,7 +182,7 @@ const [isMinting, setIsMinting] = useState(false); // true when user got to pres
 
   var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
 
-const fairLaunchId = new PublicKey(
+const fairLaunchId = usePublicKey(
 "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
 if (first2 && SplTokenBonding){
@@ -190,7 +190,6 @@ if (first2 && SplTokenBonding){
    
 setInterval(async function(){    (async () => {
   if (f123){
-    f123 = false
   try {
    
   //  setYourSOLBalance(balance);
