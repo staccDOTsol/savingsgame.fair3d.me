@@ -209,10 +209,6 @@ export const purchaseTicket = async (
   anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
-  if (!fairLaunch) {
-    return;
-  }
-
   const [fairLaunchTicket, bump] = await getFairLaunchTicket(
     //@ts-ignore
     fairLaunch.state.tokenMint,
