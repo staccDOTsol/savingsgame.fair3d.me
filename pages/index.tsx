@@ -180,10 +180,7 @@ if (first2){
   first2=  false
   
 setTimeout(async function(){    (async () => {
-  if (!anchorWallet) {
-    return;
-  }
-
+  
   try {
    
   //  setYourSOLBalance(balance);
@@ -204,10 +201,7 @@ setTimeout(async function(){    (async () => {
 
 setInterval(async function(){
   (async () => {
-    if (!anchorWallet) {
-      return;
-    }
-  
+   
     try {
      
     //  setYourSOLBalance(balance);
