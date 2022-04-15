@@ -95,27 +95,7 @@ const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
 if (first){
   first = false 
-setTimeout(async function(){
-  if (!loading && tokenBondingSdk){
 
-    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
-    if (pricing && pricing2 && fairLaunch){
-      // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
-      if (amountPerOneSol){
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
-  
-    // @ts-ignore
-    //alert(price) 0.22
-    //alert(price2)0.04 0.28
-    // @ts-ignore
-    // @ts-ignore
-    setMin2((  amountPerOneSol ))
-    setMin((  currentBuyPriceSol ))
-      }
-  }
-  }
   setInterval(async function(){
     if (!loading && tokenBondingSdk){
   
@@ -139,6 +119,27 @@ setTimeout(async function(){
     }
   
   }, 2500)
+setTimeout(async function(){
+  if (!loading && tokenBondingSdk){
+
+    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
+    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+    if (pricing && pricing2 && fairLaunch){
+      // @ts-ignore
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      if (amountPerOneSol){
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+  
+    // @ts-ignore
+    //alert(price) 0.22
+    //alert(price2)0.04 0.28
+    // @ts-ignore
+    // @ts-ignore
+    setMin2((  amountPerOneSol ))
+    setMin((  currentBuyPriceSol ))
+      }
+  }
+  }
   
 }, 2500)
 
@@ -384,7 +385,7 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
                   Pot={
                     // @ts-ignore
                     fairLaunch?.treasury / 1000000000}
-                  price={min}
+                  price={min as number}
                   tokenBondingKey={tokenBondingKey}
                   useTokenOfferingCurve
                 />
