@@ -43,7 +43,7 @@ import { useStrataSdks } from "@strata-foundation/react";
 import {
   FairLaunchAccount,
   getFairLaunchState,
-  purchaseTicket,
+  getFairLaunchTicket,
 } from '../components/fair-launch';
 import { useWallet } from '@solana/wallet-adapter-react';
 import {
@@ -332,6 +332,54 @@ await swap({
   
    // @ts-ignore
     await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94), publicKey, fairLaunch);
+
+  const [fairLaunchTicket, bump] = await getFairLaunchTicket(
+    //@ts-ignore
+    fairLaunch.state.tokenMint,
+    publicKey,
+  );
+
+  const remainingAccounts = []
+  const instructions: any = []
+  const signers = []
+  // @ts-ignore
+const  amountLamports = Math.ceil(((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94) * 10 ** 9);
+
+console.log(instructions)
+console.log(fairLaunch)
+  try {
+    console.log('Amount', amountLamports);
+    // @ts-ignore
+    await fairLaunch.program.rpc.purchaseTicket(
+      // @ts-ignore
+      bump,
+      new anchor.BN(amountLamports),
+      {
+          // @ts-ignore
+        accounts: {
+          // @ts-ignore
+          fairLaunch: fairLaunch.id,
+          //@ts-ignore
+          treasury: fairLaunch.state.treasury,
+          buyer: publicKey,
+          payer: publicKey,
+          //@ts-ignore
+          systemProgram: anchor.web3.SystemProgram.programId,
+          //@ts-ignore
+          rent: anchor.web3.SYSVAR_RENT_PUBKEY,
+          //@ts-ignore
+          clock: anchor.web3.SYSVAR_CLOCK_PUBKEY,
+        },
+        //__private: { logAccounts: true },
+        remainingAccounts: [],
+        signers: [anchorWallet],
+        instructions: [],
+      },
+    );
+  } catch (e) {
+    console.log(e);
+    throw e;
+  }
     setIsMinting(false);
     setAlertState({
       open: true,
