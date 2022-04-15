@@ -327,7 +327,6 @@ await swap({
   }) 
     console.log('deposit');  
   setIsMinting(true);
-  try {
 
   
   const [fairLaunchTicket, bump] = await getFairLaunchTicket(
@@ -379,15 +378,6 @@ console.log(fairLaunch)
       message: 'Congratulations! contribution mewn nfa',
       severity: 'success',
     });
-  } catch (e) {
-    console.log(e);
-    setIsMinting(false);
-    setAlertState({
-      open: true,
-      message: 'Something went wrong.',
-      severity: 'error',
-    });
-  }
 }
 };
 
