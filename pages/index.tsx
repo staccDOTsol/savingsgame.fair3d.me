@@ -117,7 +117,31 @@ setTimeout(async function(){
   }
   }
 
-}, 2500)}
+}, 2500)
+setInterval(async function(){
+  if (!loading && tokenBondingSdk){
+
+    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
+    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+    if (pricing && pricing2 && fairLaunch){
+      // @ts-ignore
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      if (amountPerOneSol){
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+  
+    // @ts-ignore
+    //alert(price) 0.22
+    //alert(price2)0.04 0.28
+    // @ts-ignore
+    // @ts-ignore
+    setMin2((  amountPerOneSol ))
+    setMin((  currentBuyPriceSol ))
+      }
+  }
+  }
+}, 1000)
+}
+
 
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
@@ -177,7 +201,33 @@ setTimeout(async function(){    (async () => {
     
   }
 })();
+
+setInterval(async function(){
+  (async () => {
+    if (!anchorWallet) {
+      return;
+    }
+  
+    try {
+     
+    //  setYourSOLBalance(balance);
+  
+      const state = await getFairLaunchState(
+        anchorWallet,
+        fairLaunchId,
+        connection2,
+      );
+  
+      setFairLaunch(state);
+  
+  
+    } catch (e) {
+      
+    }
+  })();
+}, 2500)
 }, 3000)
+
 }
 
 var  max, fee, step, median;
