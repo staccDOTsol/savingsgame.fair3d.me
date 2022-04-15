@@ -13,6 +13,8 @@ import { TokenOffering } from "../components/TokenOffering"
 import { numberWithCommas } from "../utils/numberWithCommas";
 import { FAIR_LAUNCH_PROGRAM } from "../components/fair-launch";
 import {Keypair, LAMPORTS_PER_SOL} from "@solana/web3.js";
+import toast from "react-hot-toast";
+
 import {ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import {
     Fanout,
@@ -39,6 +41,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import {
+  ISwapFormProps,
   usePublicKey,
   useTokenBondingFromMint,
 } from "@strata-foundation/react";
@@ -70,7 +73,8 @@ import Head from 'next/head';
 import Image from 'next/image';
 import React from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Swap } from '@strata-foundation/react'
+import { SwapForm } from '../components/SwapForm'
+import { useSwapDriver, useErrorHandler, useTokenBonding, Notification, useSwap } from '@strata-foundation/react'
 import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
@@ -436,7 +440,59 @@ const BigText = ({ children, ...other }: TextProps) => {
 var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
 var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
 var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
-   
+const { error, execute } = useSwap();
+const { handleErrors } = useErrorHandler();
+handleErrors(error);
+const { info: tokenBonding } = useTokenBonding(tokenBondingKey);
+const { info: tokenBonding2, loading: loading123 } = useTokenBonding(baseBondingKey);
+const [tradingMints, setTradingMints] = useState<{
+  base?: PublicKey;
+  target?: PublicKey;
+}>({
+  base: tokenBonding2?.baseMint,
+  target: tokenBonding?.targetMint,
+});
+React.useEffect(() => {
+  if ((!tradingMints.base || !tradingMints.target) && tokenBonding && tokenBonding2) {
+    setTradingMints({
+      base: tokenBonding2.baseMint,
+      target: tokenBonding.targetMint,
+    });
+  }
+}, [tokenBonding, tradingMints, tokenBonding2]);
+const identity = () => {};
+var driverLoading: boolean 
+var swapProps: any 
+try {
+// @ts-ignore
+var { loading: driverLoading, ...swapProps } = useSwapDriver({
+  tradingMints,
+  onTradingMintsChange: setTradingMints,
+  swap: (args) =>
+   // @ts-ignore
+    execute(args).then(({ targetAmount }) => {
+      toast.custom((t) => (
+        <Notification
+          show={t.visible}
+          type="success"
+          heading="Transaction Successful"
+          message={`Succesfully purchased ${Number(targetAmount).toFixed(
+            9
+          )} ${args.ticker}!`}
+          onDismiss={() => toast.dismiss(t.id)}
+        />
+      ));
+    }).catch(console.error),
+  onConnectWallet: identity,
+  tokenBondingKey: tokenBondingKey,
+  
+});
+swapProps.pricing.buyTargetAmount(min as number * 1.2)
+
+}
+catch (err){
+
+}
   return (
     
     <Box
@@ -477,7 +533,7 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
                 <Spinner />
               </Center>
             )}
-            {!loading && staked && tokenBondingKey && (
+            {!loading && staked && tokenBondingKey && min && (
               <VStack align="stretch" spacing={8}>
                 <LbcInfo
                 members={members as number}
@@ -486,7 +542,7 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
                 mintPublicKey={mintPublicKey}
                 mintPublicKey2={mintPublicKey2}
                 fanout={fanout}
-                min={min as number}
+                min={min}
                 fairLaunch={fairLaunch}
                 onDeposit={onDeposit}
               wallet={wallet}
@@ -497,9 +553,10 @@ var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
                   tokenBondingKey={tokenBondingKey}
                   useTokenOfferingCurve
                 />
-                <Swap tokenBondingKey={tokenBondingKey} />
-                
- 
+                {!loading123 && min && min2 && 
+                // @ts-ignore
+    <SwapForm min={min * 1.2 * 1.0091365438} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+                }
                 <Branding />
               </VStack>
             )}
