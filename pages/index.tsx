@@ -61,6 +61,9 @@ import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
 
+let first = true
+let first2 = true
+
 
 export const LbcDisplay: NextPage = ({
   name,
@@ -69,9 +72,6 @@ export const LbcDisplay: NextPage = ({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const router = useRouter();
   const { publicKey } = useWallet();
-
-let first = true
-let first2 = true
 
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
@@ -110,7 +110,6 @@ setTimeout(async function(){
     //alert(price) 0.22
     //alert(price2)0.04 0.28
     // @ts-ignore
-  
     // @ts-ignore
     setMin2((  amountPerOneSol ))
     setMin((  currentBuyPriceSol ))
