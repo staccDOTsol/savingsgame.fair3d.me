@@ -118,7 +118,7 @@ if (first){
     }
     }
   
-  }, 2500)
+  }, 5500)
 setTimeout(async function(){
   if (tokenBondingSdk){
 
@@ -141,7 +141,7 @@ setTimeout(async function(){
   }
   }
   
-}, 2500)
+}, 5500)
 
 }
 
@@ -242,6 +242,7 @@ setTimeout(async function(){
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
       var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      
       if (amountPerOneSol){
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
