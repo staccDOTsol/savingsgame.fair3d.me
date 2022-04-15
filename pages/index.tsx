@@ -186,7 +186,7 @@ const [isMinting, setIsMinting] = useState(false); // true when user got to pres
 const fairLaunchId = usePublicKey(
 "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
 );
-if (first2){
+if (first2 && SplTokenBonding){
   first2=  false
    
 setInterval(async function(){    (async () => {
