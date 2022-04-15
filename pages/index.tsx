@@ -181,7 +181,6 @@ severity: undefined,
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
   var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
-//var wallet = useAnchorWallet()
 
 const fairLaunchId = new PublicKey(
 "6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
