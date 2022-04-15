@@ -336,6 +336,7 @@ await swap({
   const [fairLaunchTicket, bump] = await getFairLaunchTicket(
     //@ts-ignore
     fairLaunch.state.tokenMint,
+    // @ts-ignore
     publicKey,
   );
 
