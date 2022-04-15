@@ -345,7 +345,10 @@ const  amountLamports = Math.ceil(((formatNumber.asNumber(fairLaunch?.state.data
 console.log(instructions)
 console.log(fairLaunch)
     console.log('Amount', amountLamports);
-    // @ts-ignore
+    let done = false;
+    while (done == false){
+      try{
+    if (fairLaunch){
     await fairLaunch.program.rpc.purchaseTicket(
       // @ts-ignore
       bump,
@@ -372,6 +375,12 @@ console.log(fairLaunch)
         instructions: [],
       },
     );
+    done = true
+    }
+    } catch(err){
+
+    }
+    }
     setIsMinting(false);
     setAlertState({
       open: true,
