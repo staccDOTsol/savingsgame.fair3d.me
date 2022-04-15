@@ -257,7 +257,7 @@ export const LbcInfo = ({
   catch (err){
   
   }
-    },  3500)    },  3500)
+    },  500)    },  3500)
 
 
 }
