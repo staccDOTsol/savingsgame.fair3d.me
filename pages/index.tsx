@@ -334,7 +334,7 @@ await swap({
     setFairLaunch(state);
 
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey);
      
     setIsMinting(false);
     setAlertState({
