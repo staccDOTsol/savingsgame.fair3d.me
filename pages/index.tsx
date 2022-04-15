@@ -311,6 +311,7 @@ await swap({
   setIsMinting(true)
 
  if (!loading && tokenBondingSdk && min && min2){
+  setIsMinting(true);
 
   await tokenBondingSdk.sell({
     // @ts-ignore
@@ -325,28 +326,15 @@ await swap({
     slippage: 0.80
   }) 
     console.log('deposit'); 
-  setIsMinting(true);
-  await doPurchase()
-}
-};
-async function doPurchase(){
-
-
-  let anum = 1 
-  if (fairLaunch){
-    anum = formatNumber.asNumber(fairLaunch.state.data.last) as number
-  }
-  console.log(anchorWallet)
-     await purchaseTicket( (((anum) + 0.0138) * 0.94), anchorWallet as NodeWallet, fairLaunch);
+    await purchaseTicket( (((formatNumber.asNumber(fairLaunch?.state.data.last) as number) + 0.0138) * 0.94), anchorWallet as NodeWallet, fairLaunch);
      
-     setIsMinting(false);
-     setAlertState({
-       open: true,
-       message: 'Congratulations! contribution mewn nfa',
-       severity: 'success',
-     });
-
-}
+    setIsMinting(false);
+    setAlertState({
+      open: true,
+      message: 'Congratulations! contribution mewn nfa',
+      severity: 'success',
+    });}
+};
 const BlackBox = ({ children, ...other }: BoxProps) => {
   return (
     <Center
