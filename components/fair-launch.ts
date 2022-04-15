@@ -155,7 +155,6 @@ export const purchaseTicket = async (
       fairLaunch,
     );
 console.log(instructions)
-  try {
     console.log('Amount', amountLamports);
     await fairLaunch.program.rpc.purchaseTicket(
       // @ts-ignore
@@ -187,10 +186,6 @@ console.log(instructions)
         instructions: instructions.length > 0 ? instructions : undefined,
       },
     );
-  } catch (e) {
-    console.log(e);
-    throw e;
-  }
 };
 
 export const withdrawFunds = async (
