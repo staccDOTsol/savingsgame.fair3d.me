@@ -59,7 +59,7 @@ export interface FairLaunchState {
 }
 
 export const getFairLaunchState = async (
-  anchorWallet: any,
+  anchorWallet: typeof anchor.Wallet,
   fairLaunchId: anchor.web3.PublicKey,
   connection: anchor.web3.Connection,
 ): Promise<FairLaunchAccount> => {
@@ -88,7 +88,7 @@ export const getFairLaunchState = async (
 const getSetupForTicketing = async (
   anchorProgram: anchor.Program,
   amount: number,
-  anchorWallet: any,
+  anchorWallet: typeof anchor.Wallet,
   fairLaunch: FairLaunchAccount | undefined,
 ): Promise<{
   remainingAccounts: {
@@ -101,15 +101,86 @@ const getSetupForTicketing = async (
   amountLamports: number;
 }> => {
   
+  if (!fairLaunch) {
+    return {
+      remainingAccounts: [],
+      instructions: [],
+      signers: [],
+      amountLamports: 0,
+    };
+  }
   const remainingAccounts = [];
   const instructions = [];
   const signers = [];
 
   let amountLamports = 0;
   //@ts-ignore
+  if (!fairLaunch.state.treasuryMint) {
+    console.log(1)
    
       amountLamports = Math.ceil(amount * LAMPORTS_PER_SOL);
     
+  } else {
+    console.log(2)
+    const transferAuthority = anchor.web3.Keypair.generate();
+    signers.push(transferAuthority);
+    // NOTE this token impl will not work till you get decimal mantissa and multiply...
+    /// ex from cli wont work since you dont have a Signer, but an anchor.Wallet
+    /*
+    const token = new Token(
+        anchorProgram.provider.connection,
+        //@ts-ignore
+        fairLaunchObj.treasuryMint,
+        TOKEN_PROGRAM_ID,
+        walletKeyPair,
+      );
+      const mintInfo = await token.getMintInfo();
+      amountNumber = Math.ceil(amountNumber * 10 ** mintInfo.decimals);
+    */
+    instructions.push(
+      Token.createApproveInstruction(
+        TOKEN_PROGRAM_ID,
+        //@ts-ignore
+        fairLaunch.state.treasuryMint,
+        transferAuthority.publicKey,
+        anchorWallet.publicKey,
+        [],
+        //@ts-ignore
+
+        // TODO: get mint decimals
+        amountNumber + fairLaunch.state.data.fees.toNumber(),
+      ),
+    );
+
+    remainingAccounts.push({
+      //@ts-ignore
+      pubkey: fairLaunch.state.treasuryMint,
+      isWritable: true,
+      isSigner: false,
+    });
+    remainingAccounts.push({
+      pubkey: (
+        await getAtaForMint(
+          //@ts-ignore
+          fairLaunch.state.treasuryMint,
+          anchorWallet.publicKey,
+        )
+      )[0],
+      isWritable: true,
+      isSigner: false,
+    });
+    remainingAccounts.push({
+      pubkey: transferAuthority.publicKey,
+      isWritable: false,
+      isSigner: true,
+    });
+    remainingAccounts.push({
+      pubkey: TOKEN_PROGRAM_ID,
+      isWritable: false,
+      isSigner: false,
+    });
+  }
+
   return {
     remainingAccounts,
     instructions,
@@ -119,7 +190,7 @@ const getSetupForTicketing = async (
 };
 
 export const receiveRefund = async (
-  anchorWallet: any,
+  anchorWallet: typeof anchor.Wallet,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
@@ -206,9 +277,13 @@ export const getFairLaunchTicket = async (
 }
 export const purchaseTicket = async (
   amount: number,
-  anchorWallet: any,
+  anchorWallet: typeof anchor.Wallet,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
+  if (!fairLaunch) {
+    return;
+  }
+
   const [fairLaunchTicket, bump] = await getFairLaunchTicket(
     //@ts-ignore
     fairLaunch.state.tokenMint,
@@ -262,7 +337,7 @@ console.log(instructions)
 };
 
 export const withdrawFunds = async (
-  anchorWallet: any,
+  anchorWallet: typeof anchor.Wallet,
   fairLaunch: FairLaunchAccount | undefined,
 ) => {
   if (!fairLaunch) {
