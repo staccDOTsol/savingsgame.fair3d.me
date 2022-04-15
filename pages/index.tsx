@@ -330,9 +330,6 @@ await swap({
   try {
 
   
-   // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last) + 0.0138) * 0.94), publicKey, fairLaunch);
-
   const [fairLaunchTicket, bump] = await getFairLaunchTicket(
     //@ts-ignore
     fairLaunch.state.tokenMint,
