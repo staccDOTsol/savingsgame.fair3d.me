@@ -413,8 +413,15 @@ await swap({
       preflightCommitment: 'recent',
     });
   
+    let fairLaunch2 = await getFairLaunchState(
+      // @ts-ignore
+      anchorWallet,
+      // @ts-ignore
+      fairLaunchId,
+      connection2,
+    );
     // @ts-ignore
-    await purchaseTicket( min2, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  (formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
