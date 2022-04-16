@@ -271,9 +271,8 @@ setInterval(async function(){    (async () => {
       fairLaunchId,
       connection2,
     );
-if (!fairLaunch){
     setFairLaunch(state);
-}
+
     console.log(fairLaunch?.state)
 
   } catch (e) {

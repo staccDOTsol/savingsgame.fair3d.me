@@ -239,6 +239,7 @@ export const LbcInfo = ({
   
   }
   const copeKey = usePublicKey("8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh")
+  const theThing = usePublicKey("CD3BxfZ3jfmndh4MYdZPubqG5Zm4uzQRJ7K5nN5QVwMJ")
   const mintKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
   const [balance, setBalance] = useState(0)
   if (first){
@@ -264,12 +265,15 @@ export const LbcInfo = ({
   
   }
   try {
-    // @ts-ignore
-var tokenAmount = await getAssociatedAccountBalance(connection2, fairLaunch.state.treasury,copeKey )
-// @ts-ignore
-setPot( tokenAmount.uiAmount)
+var tokenAmount = await getAssociatedAccountBalance(connection2, theThing as PubliKey,copeKey as PublicKey )
+setPot( tokenAmount?.uiAmount as number)
 }
 catch (err){
+  console.log(err)
+  console.log(err)
+  console.log(err)
+  console.log(err)
+  console.log(err)
 
 }
     },  500)    },  3500)
