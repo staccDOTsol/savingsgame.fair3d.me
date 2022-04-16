@@ -110,7 +110,6 @@ export const purchaseTicket = async (
   anchorWallet: any,
   fairLaunch: FairLaunchAccount | undefined,
   pubkey: any,
-  program: any ,
   connection: any
 ) => {
   if (!fairLaunch) {

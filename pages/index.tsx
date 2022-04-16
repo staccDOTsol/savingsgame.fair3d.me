@@ -403,7 +403,7 @@ await swap({
     });
   
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, program, connection2);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
