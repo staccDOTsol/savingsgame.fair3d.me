@@ -1,10 +1,5 @@
-import {
-  BondingPricing,
-  ITokenBonding,
-  SplTokenBonding,
-} from "@strata-foundation/spl-token-bonding";
+
 import { Account } from "@solana/web3.js";
-import { Wallet } from "@project-serum/anchor";
 import { LbcStatus } from "../components/LbcStatus";
 import { Branding } from "../components/Branding";
 import { purchaseTicket } from "../components/fair-launch";
@@ -15,7 +10,6 @@ import { FAIR_LAUNCH_PROGRAM } from "../components/fair-launch";
 import {Keypair, LAMPORTS_PER_SOL} from "@solana/web3.js";
 import toast from "react-hot-toast";
 
-import {ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID} from "@solana/spl-token";
 import {
     Fanout,
     FanoutClient,
@@ -79,7 +73,7 @@ import { CreateButton, ITokenState } from '../components/CreateButton';
 import { TokenDisplay } from '../components/TokenDisplay';
 import styles from '../styles/Home.module.css';
 import NodeWallet from "@project-serum/anchor/dist/cjs/nodewallet";
-
+let alala = true
 let first = true
 let first2 = true
 let f123 = true
@@ -93,9 +87,9 @@ export const LbcDisplay: NextPage = ({
   const router = useRouter();
   var { publicKey } = useWallet();
 
-  const [members, setMembers] = React.useState<number>();
-  const [staked, setStaked] = React.useState<number>();
-  const [total, setTotal] = React.useState<number>();
+  const [members, setMembers] = React.useState<number>(0);
+  const [staked, setStaked] = React.useState<number>(0);
+  const [total, setTotal] = React.useState<number>(0);
 const [tokenState, setTokenState] = React.useState<ITokenState>({});
 const wallet = useWallet()
 
@@ -114,7 +108,7 @@ const anchorWallet = useMemo(() => {
     publicKey: wallet.publicKey,
     signAllTransactions: wallet.signAllTransactions,
     signTransaction: wallet.signTransaction,
-  } as  anchor.Wallet;
+  } as  any;
 }, [wallet]);
 if (firstlala && anchorWallet){
   firstlala=false
@@ -132,6 +126,7 @@ const fanoutAccount = await fanoutSdk.fetch<Fanout>(
   Fanout
 )
 console.log(fanoutAccount)
+// @ts-ignore
 setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
 // @ts-ignore
   setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
@@ -154,6 +149,7 @@ setInterval(async function(){
     Fanout
   )
   console.log(fanoutAccount)
+  // @ts-ignore
   setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
   // @ts-ignore
     setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
@@ -162,29 +158,36 @@ setInterval(async function(){
       }
 }, 5500)
 }
-var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
-var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
+var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
+var mintPublicKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
 
 
-var tokenBondingKey = usePublicKey("5gmtthiFuBA59c4ZWr8vfR8PtdH3DNpQruDBMg7nrL8B")
-var baseBondingKey =  usePublicKey("9Zse7YX2mPQFoyMuz2Gk2K8WcH83FY1BLfu34vN4sdHi")
+var tokenBondingKey = usePublicKey("8hCkbgHK1xDfeX9TGtL8qYB3PaxykbQC9EkW2LpckWoY")
+var baseBondingKey =  usePublicKey("BJWWv32ePmZ1Gterm2jsWLo71q6RpCZpDoKANZ5J4xN2")
 const { tokenBondingSdk, loading } = useStrataSdks();
-const getPricing = async (
-tokenBondingSdk: SplTokenBonding | undefined,
-key: PublicKey | null | undefined,
-
-) => tokenBondingSdk && key && tokenBondingSdk.getPricing(key);
 
 const [contributed, setContributed] = useState(0);
 
 const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
+
+  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+setTimeout(async function(){
+if (first && tokenBondingSdk){
+  console.log('ahahahahah')
+  first = false
+
 setInterval(async function(){
+  try{
+    console.log(1)
   if (tokenBondingSdk){
+    console.log(2)
 
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+    console.log(3)
     if (pricing && pricing2 && fairLaunch){
+      console.log(4)
       // @ts-ignore
       var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
       if (amountPerOneSol){
@@ -195,21 +198,25 @@ setInterval(async function(){
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-  
+    console.log(formatNumber.asNumber(fairLaunch?.state.data.last))
+  console.log(fairLaunch?.state.treasury.toBase58())
     setMin2((  amountPerOneSol ))
 
     setMin((  currentBuyPriceSol ))
+
       }
   }
   }
+  } catch(err){
+    console.log(err)
+  }
+}, 840)
 
-}, 540)
-if (first){
-  first = false 
+}
+}, 666)
 
- 
 setTimeout(async function(){
-  if (tokenBondingSdk && !min && !min2){
+  if (tokenBondingSdk ){
 
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
@@ -234,11 +241,7 @@ setTimeout(async function(){
   }
   }
   
-}, 1500)
-
-}
-
-
+}, 4500)
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
 const [alertState, setAlertState] = useState<AlertState>({
@@ -249,12 +252,10 @@ severity: undefined,
 
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
-
 const fairLaunchId = usePublicKey(
-"6A5bT4dQ7VbN1G88WNM3oAKoDMQ3CmYSTjPXSCikHCWy",
+"BdKw74L8tb1Kk93nfiTUdFv6BjGSeU5xMKNrM8SCZELU",
 );
-if (first2 && SplTokenBonding){
+if (first2 ){
   first2=  false
    
 setInterval(async function(){    (async () => {
@@ -308,7 +309,7 @@ setTimeout(async function(){    (async () => {
 }
 })(); 
 
-}, 250)
+}, 2250)
 
 }
 
@@ -379,6 +380,7 @@ await swap({
 
  if (!loading && tokenBondingSdk && min && min2){
   setIsMinting(true);
+  
 
   await tokenBondingSdk.sell({
     // @ts-ignore
@@ -391,7 +393,7 @@ await swap({
     tokenBonding: baseBondingKey,
     targetAmount: min2 * 0.94,
     slippage: 0.80
-  }) 
+  })  
     console.log('deposit'); 
     const provider = new anchor.Provider(connection2, anchorWallet, {
       preflightCommitment: 'recent',
@@ -408,7 +410,7 @@ await swap({
     const treasury = await program.provider.connection.getBalance(state.treasury);
   
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey, program);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey, program, connection2);
      
     setIsMinting(false);
     setAlertState({
@@ -437,9 +439,9 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-var mintPublicKey2 =usePublicKey("openDKyuDPS6Ak1BuD3JtvkQGV3tzCxjpHUfe1mdC79")  
-var mintPublicKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
-var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
+var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
+var mintPublicKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
+var fanout = usePublicKey("BdrfgTYt2FXhs7YeYChAASGk2EXyE1tpP6iqGzid5mMq")
 const { error, execute } = useSwap();
 const { handleErrors } = useErrorHandler();
 handleErrors(error);
@@ -531,7 +533,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 <Spinner />
               </Center>
             )}
-            {!loading && staked && tokenBondingKey  && (
+            {!loading   && (
               <VStack align="stretch" spacing={8}>
                 <LbcInfo
                 members={members as number}
@@ -544,11 +546,9 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 fairLaunch={fairLaunch}
                 onDeposit={onDeposit}
               wallet={wallet}
-                  Pot={
-                    // @ts-ignore
-                    fairLaunch?.treasury / 1000000000}
+                  
                   price={min as number}
-                  tokenBondingKey={tokenBondingKey}
+                  tokenBondingKey={tokenBondingKey as PublicKey}
                   useTokenOfferingCurve
                 />
                 {!loading123 && min && min2 && 
@@ -567,7 +567,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
 
 export const Home: NextPage = (props) => {
 
-  var fanout = usePublicKey("5dNo3SrhR3FhY4aqSsaZNeZ3XfvAnQxtY98QKuGvZzgN")
+  var fanout = usePublicKey("BdrfgTYt2FXhs7YeYChAASGk2EXyE1tpP6iqGzid5mMq")
 
 
   return (

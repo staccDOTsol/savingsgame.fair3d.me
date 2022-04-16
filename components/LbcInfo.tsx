@@ -67,7 +67,6 @@ export const LbcInfo = ({
   members, 
   staked,
   total,
-    Pot,
   tokenBondingKey,
   useTokenOfferingCurve = false,
   price: inputPrice,
@@ -81,7 +80,6 @@ export const LbcInfo = ({
 }: {members: number, 
   staked: number,
   total: number ,
-    Pot: number;
   tokenBondingKey: PublicKey;
   useTokenOfferingCurve?: boolean;
   price?: number;
@@ -94,6 +92,7 @@ export const LbcInfo = ({
   fanout: any;
 }) => {
     var [shares, setShares] = useState("1.38");
+    var [Pot, setPot] = useState(0);
 
     async function onChange(e: any){
         e.preventDefault()
@@ -239,7 +238,8 @@ export const LbcInfo = ({
     }
   
   }
-  const mintKey = usePublicKey("Bw4DFkpEXojT93uTLqjdWetVUMQcKJKv9evQJ3GVSJGp")
+  const copeKey = usePublicKey("8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh")
+  const mintKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
   const [balance, setBalance] = useState(0)
   if (first){
     first = false
@@ -263,13 +263,22 @@ export const LbcInfo = ({
   catch (err){
   
   }
+  try {
+    // @ts-ignore
+var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey,copeKey )
+// @ts-ignore
+setPot( tokenAmount.uiAmount)
+}
+catch (err){
+
+}
     },  500)    },  3500)
 
 
 }
   return (
     <VStack spacing={6} align="stretch">
-{ members && staked && total && 
+{true &&// members && staked && total && 
 <div>
 <Stack direction={["column", "row"]}>
       <HStack flexGrow={4}>
@@ -362,7 +371,7 @@ export const LbcInfo = ({
                
               <BigText>
 
-                ◎ { !isNaN(Pot) && numberWithCommas(Pot * 0.75, 4)}
+                { !isNaN(Pot) && numberWithCommas(Pot * 0.75, 4)} C◎PE
               </BigText>
             )}
             <LightMode>
