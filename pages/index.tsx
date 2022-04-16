@@ -225,7 +225,7 @@ setInterval(async function(){
   } catch(err){
     console.log(err)
   }
-}, 5940)
+}, 15940)
 
 }
 }, 666)
