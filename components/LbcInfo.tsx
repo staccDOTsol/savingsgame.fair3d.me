@@ -239,7 +239,7 @@ export const LbcInfo = ({
   
   }
   const copeKey = usePublicKey("8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh")
-  const theThing = usePublicKey("CD3BxfZ3jfmndh4MYdZPubqG5Zm4uzQRJ7K5nN5QVwMJ")
+  const theThing = usePublicKey("GDLhRpdMXt8bpuvpNp8obvjmV2uTEBzAdHhNszYspBL6")
   const mintKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
   const [balance, setBalance] = useState(0)
   if (first){
@@ -266,6 +266,16 @@ export const LbcInfo = ({
   }
   try {
 var tokenAmount = await getAssociatedAccountBalance(connection2, theThing as PublicKey,copeKey as PublicKey )
+console.log(tokenAmount)
+
+
+console.log(tokenAmount)
+console.log(tokenAmount)
+console.log(tokenAmount)
+console.log(tokenAmount)
+console.log(tokenAmount)console.log(tokenAmount)
+console.log(tokenAmount)
+console.log(tokenAmount)
 setPot( tokenAmount?.uiAmount as number)
 }
 catch (err){
