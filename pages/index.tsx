@@ -190,10 +190,21 @@ setInterval(async function(){
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     console.log(3)
-    if (pricing && pricing2 && fairLaunch){
+    let fairLaunch2 = await getFairLaunchState(
+      // @ts-ignore
+      anchorWallet,
+      // @ts-ignore
+      fairLaunchId,
+      connection2,
+    );
+    if (pricing && pricing2 && fairLaunch2){
       console.log(4)
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1);
+      for (var i = 0; i <= 16; i++){
+      // @ts-ignore
+      console.log((formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1)
+      }
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
@@ -202,8 +213,8 @@ setInterval(async function(){
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    console.log(formatNumber.asNumber(fairLaunch?.state.data.last))
-  console.log(fairLaunch?.state.treasury.toBase58())
+    console.log(formatNumber.asNumber(fairLaunch2?.state.data.last))
+  console.log(fairLaunch2?.state.treasury.toBase58())
     setMin2((  amountPerOneSol ))
 
     setMin((  currentBuyPriceSol ))
