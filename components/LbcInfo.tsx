@@ -267,14 +267,6 @@ export const LbcInfo = ({
   
   }
   try {
-
-    const provider = new anchor.Provider(connection2, wallet, {
-      preflightCommitment: 'recent',
-    });
-  
-    const idl = await anchor.Program.fetchIdl(FAIR_LAUNCH_PROGRAM, provider);
-  // @ts-ignore
-    const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     // @ts-ignore
     const tokenAccountInfo = await provider.connection.getTokenAccountBalance(theThing as PublicKey)
     
