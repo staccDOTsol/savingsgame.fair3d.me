@@ -276,7 +276,8 @@ export const LbcInfo = ({
   // @ts-ignore
     const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     // @ts-ignore
-    const tokenAccountInfo = await program.rpc.getTokenAccountBalance ([theThing])
+    const tokenAccountInfo = await program.rpc(  {"jsonrpc":"2.0", "id":1, "method":"getTokenAccountBalance", "params": [theThing]})
+
   
     
     console.log(tokenAccountInfo);
