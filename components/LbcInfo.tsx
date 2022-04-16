@@ -276,13 +276,13 @@ export const LbcInfo = ({
   // @ts-ignore
     const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     // @ts-ignore
-    const tokenAccountInfo = await program.rpc(  {"jsonrpc":"2.0", "id":1, "method":"getTokenAccountBalance", "params": [theThing]})
-
+    const tokenAccountInfo = await provider.connection.getTokenAccountBalance(theThing as PublicKey)
+    
   
     
     console.log(tokenAccountInfo);
     if (tokenAccountInfo){
-setPot( JSON.parse(tokenAccountInfo).result.value.uiAmount as number)
+setPot( (tokenAccountInfo).value.uiAmount as number)
     }
 }
 catch (err){
@@ -293,7 +293,7 @@ catch (err){
   console.log(err)
 
 }
-    },  500)    },  3500)
+    },  1500)    },  3500)
 
 
 }
