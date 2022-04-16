@@ -1,7 +1,7 @@
 import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
-import {NATIVE_MINT, Token} from "@solana/spl-token";
+import {NATIVE_MINT} from "@solana/spl-token";
 import { FAIR_LAUNCH_PROGRAM } from "./fair-launch";
 import {
   Box,
