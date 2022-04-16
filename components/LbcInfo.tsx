@@ -267,8 +267,8 @@ export const LbcInfo = ({
   
   }
   try {
-    const tokenAccountInfo = await fairLaunch.program.rpc.getTokenAccountBalance([theThing]]
-  )
+    const tokenAccountInfo = await fairLaunch.program.rpc.getTokenAccountBalance([theThing])
+  ß
     
     console.log(tokenAccountInfo);
 setPot( tokenAccountInfo?.result.value.uiAmount as number)
