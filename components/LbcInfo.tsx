@@ -267,7 +267,10 @@ export const LbcInfo = ({
   
   }
   try {
-    // @ts-ignore
+
+    const provider = new anchor.Provider(connection2, wallet, {
+      preflightCommitment: 'recent',
+    });
     const tokenAccountInfo = await provider.connection.getTokenAccountBalance(theThing as PublicKey)
     
   
