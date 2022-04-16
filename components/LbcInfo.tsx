@@ -265,7 +265,7 @@ export const LbcInfo = ({
   }
   try {
     // @ts-ignore
-var tokenAmount = await getAssociatedAccountBalance(connection2, wallet.publicKey,copeKey )
+var tokenAmount = await getAssociatedAccountBalance(connection2, fairLaunch.state.treasury,copeKey )
 // @ts-ignore
 setPot( tokenAmount.uiAmount)
 }
