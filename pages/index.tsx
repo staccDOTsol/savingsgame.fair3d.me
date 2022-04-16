@@ -77,6 +77,7 @@ let alala = true
 let first = true
 let first2 = true
 let f123 = true
+var last
 let firstlala = true
 var publicKey
 export const LbcDisplay: NextPage = ({
@@ -374,8 +375,7 @@ var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
 //var max = min + (1 * 1);
 // @ts-ignore
 var step = 1;
-// @ts-ignore
-var median = formatNumber.asNumber(fairLaunch?.state.currentMedian);
+ last = formatNumber.asNumber(fairLaunch?.state.data.last);
 
 const onDeposit = async () => {
   /*
@@ -421,7 +421,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  (formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  last + 1, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
