@@ -1,6 +1,8 @@
 import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
+import {NATIVE_MINT, getAccount} from "@solana/spl-token";
+
 import {
   Box,
   BoxProps,
@@ -265,17 +267,12 @@ export const LbcInfo = ({
   
   }
   try {
-var tokenAmount = await getAssociatedAccountBalance(connection2, theThing as PublicKey,copeKey as PublicKey )
-console.log(tokenAmount)
-
-
-console.log(tokenAmount)
-console.log(tokenAmount)
-console.log(tokenAmount)
-console.log(tokenAmount)
-console.log(tokenAmount)console.log(tokenAmount)
-console.log(tokenAmount)
-console.log(tokenAmount)
+    const tokenAccountInfo = await getAccount(
+      connection2,
+      theThing
+    )
+    
+    console.log(tokenAccountInfo.amount);
 setPot( tokenAmount?.uiAmount as number)
 }
 catch (err){
