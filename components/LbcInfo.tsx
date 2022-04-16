@@ -2,7 +2,7 @@ import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
 import {NATIVE_MINT, Token} from "@solana/spl-token";
-
+import { FAIR_LAUNCH_PROGRAM } from "./fair-launch";
 import {
   Box,
   BoxProps,
@@ -267,8 +267,16 @@ export const LbcInfo = ({
   
   }
   try {
+
+    const provider = new anchor.Provider(connection2, wallet, {
+      preflightCommitment: 'recent',
+    });
+  
+    const idl = await anchor.Program.fetchIdl(FAIR_LAUNCH_PROGRAM, provider);
+  // @ts-ignore
+    const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     const tokenAccountInfo = await fairLaunch.program.rpc.getTokenAccountBalance([theThing])
-  ß
+  
     
     console.log(tokenAccountInfo);
 setPot( tokenAccountInfo?.result.value.uiAmount as number)
