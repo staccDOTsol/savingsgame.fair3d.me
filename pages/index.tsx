@@ -253,7 +253,7 @@ severity: undefined,
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
 const fairLaunchId = usePublicKey(
-"BdKw74L8tb1Kk93nfiTUdFv6BjGSeU5xMKNrM8SCZELU",
+"CD3BxfZ3jfmndh4MYdZPubqG5Zm4uzQRJ7K5nN5QVwMJ",
 );
 if (first2 ){
   first2=  false
@@ -385,13 +385,13 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.2,
+    targetAmount: min * 1.1,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2 * 0.94,
+    targetAmount: min2 * 0.96,
     slippage: 0.80
   })  
     console.log('deposit'); 
@@ -553,7 +553,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 />
                 {!loading123 && min && min2 && 
                 // @ts-ignore
-    <SwapForm min={min * 1.2 * 1.01} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.1} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>

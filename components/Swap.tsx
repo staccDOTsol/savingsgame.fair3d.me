@@ -52,6 +52,6 @@ export const Swap = (min: number, { tokenBondingKey }: { tokenBondingKey: Public
 
   return (
       // @ts-ignore
-    <SwapForm min={min * 1.2 * 1.01} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
   );
 };

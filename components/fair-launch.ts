@@ -91,7 +91,7 @@ console.log(state)
 
 
 const fairLaunchId = new anchor.web3.PublicKey(
-  "AS3PnAu61TS2JfcYNqj9qCkhePFcmbsdpuWzHAmXBGL1",
+  "CD3BxfZ3jfmndh4MYdZPubqG5Zm4uzQRJ7K5nN5QVwMJ",
 );
 
 
@@ -130,7 +130,7 @@ export const purchaseTicket = async (
   let amountLamports = 0;
   //@ts-ignore
   if (true) {
-    amountLamports = Math.ceil(amount * 6);
+    amountLamports = Math.ceil(amount * 10 ** 6);
     const transferAuthority = anchor.web3.Keypair.generate();
     signers.push(transferAuthority);
     // NOTE this token impl will not work till you get decimal mantissa and multiply...
