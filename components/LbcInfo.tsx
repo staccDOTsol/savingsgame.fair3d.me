@@ -280,7 +280,7 @@ export const LbcInfo = ({
   
     
     console.log(tokenAccountInfo);
-setPot( tokenAccountInfo?.result.value.uiAmount as number)
+setPot( JSON.parse(tokenAccountInfo?).result.value.uiAmount as number)
 }
 catch (err){
   console.log(err)
