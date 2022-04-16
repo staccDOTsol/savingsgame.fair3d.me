@@ -1,7 +1,7 @@
 import {FanoutClient} from "@glasseaters/hydra-sdk";
 import * as anchor from '@project-serum/anchor';
 import { Connection } from '@solana/web3.js'
-import {NATIVE_MINT, getAccount} from "@solana/spl-token";
+import {NATIVE_MINT, Token} from "@solana/spl-token";
 
 import {
   Box,
@@ -102,7 +102,7 @@ export const LbcInfo = ({
         setShares(e.target.value)
         }
    
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
   const { isOpen, onToggle } = useDisclosure({
     defaultIsOpen: false,
@@ -267,7 +267,7 @@ export const LbcInfo = ({
   
   }
   try {
-    const tokenAccountInfo = await getAccount(
+    const tokenAccountInfo = await Token.getAccount(
       connection2,
       theThing
     )

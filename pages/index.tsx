@@ -114,7 +114,7 @@ if (firstlala && anchorWallet){
   firstlala=false
 setTimeout(async function(){
     if (anchorWallet){
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
 const fanoutSdk = new FanoutClient(
   connection2,
@@ -137,7 +137,7 @@ setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
 
 setInterval(async function(){
   if (anchorWallet){
-    var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+    var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
   
   const fanoutSdk = new FanoutClient(
     connection2,
@@ -171,7 +171,7 @@ const [contributed, setContributed] = useState(0);
 const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
 
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 setTimeout(async function(){
 if (first && tokenBondingSdk){
   console.log('ahahahahah')
