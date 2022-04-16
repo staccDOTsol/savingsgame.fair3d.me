@@ -102,7 +102,7 @@ export const LbcInfo = ({
         setShares(e.target.value)
         }
    
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
   const { isOpen, onToggle } = useDisclosure({
     defaultIsOpen: false,
