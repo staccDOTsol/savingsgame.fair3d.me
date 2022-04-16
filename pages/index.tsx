@@ -127,9 +127,9 @@ const fanoutAccount = await fanoutSdk.fetch<Fanout>(
 )
 console.log(fanoutAccount)
 // @ts-ignore
-setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
+setTotal(((1 / 1000000) * (new anchor.BN(fanoutAccount?.totalShares))))
 // @ts-ignore
-  setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
+  setStaked(((1 / 1000000) * (new anchor.BN(fanoutAccount?.totalStakedShares))))
   // @ts-ignore
   setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
     }
@@ -151,9 +151,9 @@ setInterval(async function(){
   )
   console.log(fanoutAccount)
   // @ts-ignore
-  setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
+  setTotal(((1 / 1000000) * (new anchor.BN(fanoutAccount?.totalShares))))
   // @ts-ignore
-    setStaked((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalStakedShares))))
+    setStaked(((1 / 1000000) * (new anchor.BN(fanoutAccount?.totalStakedShares))))
     // @ts-ignore
     setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
       }
@@ -193,7 +193,7 @@ setInterval(async function(){
     if (pricing && pricing2 && fairLaunch){
       console.log(4)
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( ((1 / 1000000) * (fairLaunch?.state.data.last)) + 1);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
@@ -202,7 +202,7 @@ setInterval(async function(){
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    console.log(formatNumber.asNumber(fairLaunch?.state.data.last))
+    console.log((1 / 1000000) * (fairLaunch?.state.data.last))
   console.log(fairLaunch?.state.treasury.toBase58())
     setMin2((  amountPerOneSol ))
 
@@ -226,7 +226,7 @@ setTimeout(async function(){
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( ((1 / 1000000) * (fairLaunch?.state.data.last)) + 1);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
@@ -328,7 +328,7 @@ setTimeout(async function(){
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( ((1 / 1000000) * (fairLaunch?.state.data.last)) + 1);
       
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
@@ -348,7 +348,7 @@ setTimeout(async function(){
  
   }
   // @ts-ignore
-//setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1)
+//setMin( ((1 / 1000000) * (fairLaunch?.state.data.last)) + 1)
 }
 var phaseOneEnd =  toDate(fairLaunch?.state.data.phaseOneEnd)?.getTime();
 
@@ -358,13 +358,13 @@ const ValueSlider = (Slider)
 
 console.log(min)
 // @ts-ignore
-var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
+var fee = (1 / 1000000) * (fairLaunch?.state.data.fee);
 // @ts-ignore
 //var max = min + (1 * 1);
 // @ts-ignore
 var step = 1;
 // @ts-ignore
-var median = formatNumber.asNumber(fairLaunch?.state.currentMedian);
+var median = (1 / 1000000) * (fairLaunch?.state.currentMedian);
 
 const onDeposit = async () => {
   /*
@@ -403,7 +403,7 @@ await swap({
     });
   
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket( (((1 / 1000000) * (fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
