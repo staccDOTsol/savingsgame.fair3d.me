@@ -265,7 +265,7 @@ export const LbcInfo = ({
   
   }
   try {
-var tokenAmount = await getAssociatedAccountBalance(connection2, theThing as PubliKey,copeKey as PublicKey )
+var tokenAmount = await getAssociatedAccountBalance(connection2, theThing as PublicKey,copeKey as PublicKey )
 setPot( tokenAmount?.uiAmount as number)
 }
 catch (err){
