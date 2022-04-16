@@ -114,7 +114,7 @@ if (firstlala && anchorWallet){
   firstlala=false
 setTimeout(async function(){
     if (anchorWallet){
-  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
 
 const fanoutSdk = new FanoutClient(
   connection2,
@@ -138,7 +138,7 @@ setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
 setInterval(async function(){
   try {
   if (anchorWallet){
-    var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+    var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
   
   const fanoutSdk = new FanoutClient(
     connection2,
@@ -160,7 +160,7 @@ setInterval(async function(){
     } catch (err){
        console.log(err)
     }
-}, 5500)
+}, 15500)
 }
 var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
 var mintPublicKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
@@ -175,7 +175,7 @@ const [contributed, setContributed] = useState(0);
 const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
 
-  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
+  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
 setTimeout(async function(){
 if (first && tokenBondingSdk){
   console.log('ahahahahah')
@@ -214,7 +214,7 @@ setInterval(async function(){
   } catch(err){
     console.log(err)
   }
-}, 940)
+}, 1940)
 
 }
 }, 666)
@@ -402,18 +402,8 @@ await swap({
       preflightCommitment: 'recent',
     });
   
-    const idl = await anchor.Program.fetchIdl(FAIR_LAUNCH_PROGRAM, provider);
-  // @ts-ignore
-    const program = new anchor.Program(idl, FAIR_LAUNCH_PROGRAM, provider);
     // @ts-ignore
-    const state: any = await program.account.fairLaunch.fetch(fairLaunchId);
-    console.log(1)
-  console.log(state)
-   
-    const treasury = await program.provider.connection.getBalance(state.treasury);
-  
-    // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, program, connection2);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, fairLaunch.program, connection2);
      
     setIsMinting(false);
     setAlertState({
