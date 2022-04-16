@@ -163,13 +163,12 @@ setInterval(async function(){
     }
 }, 15500)
 }
-var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
-var mintPublicKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
+var mintPublicKey2 =usePublicKey("CySuu3aePXaZ46bntayBYhQ8kWkA2hYz95F1Nqx11zWz")  
+var mintPublicKey = usePublicKey("EpzVq457tsvK3CKVUJjrdMYRCsNuoURaBHhdDMhLGDez")
 
 
-var tokenBondingKey = usePublicKey("8hCkbgHK1xDfeX9TGtL8qYB3PaxykbQC9EkW2LpckWoY")
-var baseBondingKey =  usePublicKey("BJWWv32ePmZ1Gterm2jsWLo71q6RpCZpDoKANZ5J4xN2")
-const { tokenBondingSdk, loading } = useStrataSdks();
+
+const { tokenBondingSdk, tokenCollectiveSdk, loading } = useStrataSdks();
 
 const [contributed, setContributed] = useState(0);
 
@@ -185,11 +184,11 @@ if (first && tokenBondingSdk){
 setInterval(async function(){
   try{
     console.log(1)
-  if (tokenBondingSdk){
+  if (tokenBondingSdk && tokenCollectiveSdk){
     console.log(2)
 
-    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+    var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
+    var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
     console.log(3)
     let fairLaunch2 = await getFairLaunchState(
       // @ts-ignore
@@ -232,10 +231,10 @@ setInterval(async function(){
 }, 2666)
 
 setTimeout(async function(){
-  if (tokenBondingSdk ){
+  if (tokenBondingSdk  && tokenCollectiveSdk){
 
-    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
+       var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
+       var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
       var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
@@ -450,9 +449,13 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
-var mintPublicKey = usePublicKey("E68AWnPhcs9coJUWRQDz2S9pbsD3Ed7uVVkbGsE9AoFj")
-var fanout = usePublicKey("BdrfgTYt2FXhs7YeYChAASGk2EXyE1tpP6iqGzid5mMq")
+var mintPublicKey2 =usePublicKey("CySuu3aePXaZ46bntayBYhQ8kWkA2hYz95F1Nqx11zWz")  
+var mintPublicKey = usePublicKey("EpzVq457tsvK3CKVUJjrdMYRCsNuoURaBHhdDMhLGDez")
+var bond1 = usePublicKey("GPXeSgtNTPVmWrCSTV6FrDYUGB3iGxSZWJYerYuZNBbu")
+var tokenBondingKey = bond1
+var bond2 = usePublicKey("9sEV1qZVas4EM2oVrwqGpad5Uv82eUzfeZ66jEphn5NV")
+var baseBondingKey = bond2
+var fanout = usePublicKey("CciLLcAb1b6ASATBTRptuXkRaCy4MrYJnuFUy7bWknfC")
 const { error, execute } = useSwap();
 const { handleErrors } = useErrorHandler();
 handleErrors(error);
@@ -579,7 +582,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
 
 export const Home: NextPage = (props) => {
 
-  var fanout = usePublicKey("BdrfgTYt2FXhs7YeYChAASGk2EXyE1tpP6iqGzid5mMq")
+  var fanout = usePublicKey("CciLLcAb1b6ASATBTRptuXkRaCy4MrYJnuFUy7bWknfC")
 
 
   return (
