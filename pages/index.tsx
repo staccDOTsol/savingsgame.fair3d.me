@@ -189,7 +189,7 @@ setInterval(async function(){
     if (pricing && pricing2 && fairLaunch){
       console.log(4)
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
@@ -222,7 +222,7 @@ setTimeout(async function(){
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
@@ -324,7 +324,7 @@ setTimeout(async function(){
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
       // @ts-ignore
-      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1);
       
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
@@ -344,7 +344,7 @@ setTimeout(async function(){
  
   }
   // @ts-ignore
-//setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138)
+//setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1)
 }
 var phaseOneEnd =  toDate(fairLaunch?.state.data.phaseOneEnd)?.getTime();
 
@@ -356,9 +356,9 @@ console.log(min)
 // @ts-ignore
 var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
 // @ts-ignore
-//var max = min + (0.0138 * 1);
+//var max = min + (1 * 1);
 // @ts-ignore
-var step = 0.0138;
+var step = 1;
 // @ts-ignore
 var median = formatNumber.asNumber(fairLaunch?.state.currentMedian);
 
@@ -409,7 +409,7 @@ await swap({
     const treasury = await program.provider.connection.getBalance(state.treasury);
   
     // @ts-ignore
-    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 0.0138), wallet, fairLaunch, wallet.publicKey, program, connection2);
+    await purchaseTicket( ((formatNumber.asNumber(fairLaunch?.state.data.last)) + 1), wallet, fairLaunch, wallet.publicKey, program, connection2);
      
     setIsMinting(false);
     setAlertState({
@@ -543,6 +543,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 fanout={fanout}
                 min={min as number}
                 fairLaunch={fairLaunch}
+              
                 onDeposit={onDeposit}
               wallet={wallet}
                   
