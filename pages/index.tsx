@@ -228,7 +228,7 @@ setInterval(async function(){
 }, 15940)
 
 }
-}, 666)
+}, 2666)
 
 setTimeout(async function(){
   if (tokenBondingSdk ){
