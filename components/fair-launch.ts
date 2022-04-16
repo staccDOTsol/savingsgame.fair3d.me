@@ -214,8 +214,13 @@ export const purchaseTicket = async (
   try {
     console.log('Amount', amountLamports);
     console.log(instructions)
-    
-    await fairLaunch.program.rpc.purchaseTicket( 
+    const provider = new anchor.Provider(connection, anchorWallet, {
+      preflightCommitment: 'recent',
+    });
+  
+    const idl = await anchor.Program.fetchIdl(FAIR_LAUNCH_PROGRAM, provider);
+    const program2 = new anchor.Program(idl as any, FAIR_LAUNCH_PROGRAM, provider);
+    await program2.rpc.purchaseTicket( 
       bump,
       new anchor.BN(amountLamports),
       {
