@@ -114,7 +114,7 @@ if (firstlala && anchorWallet){
   firstlala=false
 setTimeout(async function(){
     if (anchorWallet){
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 
 const fanoutSdk = new FanoutClient(
   connection2,
@@ -136,8 +136,9 @@ setTotal((formatNumber.asNumber(new anchor.BN(fanoutAccount?.totalShares))))
 }, 500)
 
 setInterval(async function(){
+  try {
   if (anchorWallet){
-    var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+    var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
   
   const fanoutSdk = new FanoutClient(
     connection2,
@@ -156,6 +157,9 @@ setInterval(async function(){
     // @ts-ignore
     setMembers(((new anchor.BN(fanoutAccount?.totalMembers))))
       }
+    } catch (err){
+       console.log(err)
+    }
 }, 5500)
 }
 var mintPublicKey2 =usePublicKey("HoFAt8pK2jWhpts6L82KB1CpE3KDkz6bL6CAkBUCHXB6")  
@@ -171,7 +175,7 @@ const [contributed, setContributed] = useState(0);
 const [basePrice, setBasePrice] = useState<number >(1);
 const [targetPrice, setTargetPrice] = useState<number >(1);
 
-  var connection2 = new Connection('https://ssc-dao.genesysgo.net/', "confirmed");
+  var connection2 = new Connection('https://solana--mainnet.datahub.figment.io/apikey/24c64e276fc5db6ff73da2f59bac40f2', "confirmed");
 setTimeout(async function(){
 if (first && tokenBondingSdk){
   console.log('ahahahahah')
@@ -210,7 +214,7 @@ setInterval(async function(){
   } catch(err){
     console.log(err)
   }
-}, 540)
+}, 940)
 
 }
 }, 666)
