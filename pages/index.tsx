@@ -77,7 +77,7 @@ let alala = true
 let first = true
 let first2 = true
 let f123 = true
-var last
+var last = 1
 let firstlala = true
 var publicKey
 export const LbcDisplay: NextPage = ({
