@@ -399,13 +399,13 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.1,
+    targetAmount: min * 1.2,
     slippage: 0.80
   })
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2,
+    targetAmount: min2 * 1.1,
     slippage: 0.80
   })  
     console.log('deposit'); 
@@ -569,7 +569,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 />
                 {!loading123 && min && min2 && 
                 // @ts-ignore
-    <SwapForm min={min * 1.1} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>
