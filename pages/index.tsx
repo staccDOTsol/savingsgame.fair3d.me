@@ -371,8 +371,8 @@ var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
 //var max = min + (1 * 1);
 // @ts-ignore
 var step = 1;
-if (last == 1){
- last = formatNumber.asNumber(fairLaunch?.state.data.last) || 1;
+if (fairLaunch ){
+ last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
 }
 const onDeposit = async () => {
   /*
