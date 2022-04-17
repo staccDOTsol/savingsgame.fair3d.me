@@ -20,7 +20,7 @@ export const Header: React.FC = () => (
       <Text fontSize="xl">War of Attrition by Jare on ◎</Text>
       
     </HStack>
-    <Text fontSize="xl">Following are header links, click 'em:</Text>
+    <Text fontSize="xl">this thing is unsafe until @hasheddude approves</Text>
       
     <Text
       fontSize="xl"
