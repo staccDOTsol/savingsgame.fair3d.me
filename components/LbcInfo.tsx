@@ -241,8 +241,8 @@ export const LbcInfo = ({
   
   }
   const copeKey = usePublicKey("8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh")
-  const theThing = usePublicKey("GDLhRpdMXt8bpuvpNp8obvjmV2uTEBzAdHhNszYspBL6")
-  const mintKey = usePublicKey("EpzVq457tsvK3CKVUJjrdMYRCsNuoURaBHhdDMhLGDez")
+  const theThing = usePublicKey("BUZACct68vqhHEieNmhCC4zwz6LKz8JrqQPhdmrvwXqy")
+  const mintKey = usePublicKey("3TT2Jw6WKeDCxvzdNXxhPUEDk3dv2Evpv51ft6LCGUjA")
   const [balance, setBalance] = useState(0)
   if (first){
     first = false
@@ -387,7 +387,7 @@ catch (err){
                
               <BigText>
 
-                { !isNaN(Pot) && numberWithCommas(Pot * 0.75, 4)} C◎PE
+                { !isNaN(Pot) && numberWithCommas(Pot * 0.75, 4)} GRAPE
               </BigText>
             )}
             <LightMode>
