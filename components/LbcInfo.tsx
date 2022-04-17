@@ -242,7 +242,7 @@ export const LbcInfo = ({
   }
   const copeKey = usePublicKey("8HGyAAB1yoM1ttS7pXjHMa3dukTFGQggnFFH3hJZgzQh")
   const theThing = usePublicKey("BUZACct68vqhHEieNmhCC4zwz6LKz8JrqQPhdmrvwXqy")
-  const mintKey = usePublicKey("3TT2Jw6WKeDCxvzdNXxhPUEDk3dv2Evpv51ft6LCGUjA")
+  const mintKey = usePublicKey("Ax4g2hBNLqxaJbbDUrwEErX1h1JKLdtJsRebcDWcNacA")
   const [balance, setBalance] = useState(0)
   if (first){
     first = false

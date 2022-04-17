@@ -165,8 +165,8 @@ setInterval(async function(){
     }
 }, 15500)
 }
-var mintPublicKey2 =usePublicKey("6vRxW2CrJTAiWxnDTB5Lmap3WkQJ3oZeEsyVnWw6GYSA")  
-var mintPublicKey = usePublicKey("3TT2Jw6WKeDCxvzdNXxhPUEDk3dv2Evpv51ft6LCGUjA")
+var mintPublicKey2 =usePublicKey("8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA")  
+var mintPublicKey = usePublicKey("Ax4g2hBNLqxaJbbDUrwEErX1h1JKLdtJsRebcDWcNacA")
 
 
 
@@ -190,37 +190,22 @@ setInterval(async function(){
     console.log(2)
 
     var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
-    var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
     console.log(3)
-    let fairLaunch2 = await getFairLaunchState(
-      // @ts-ignore
-      anchorWallet,
-      // @ts-ignore
-      fairLaunchId,
-      connection2,
-    );
-    if (pricing && pricing2 && fairLaunch2){
+    
+    if (pricing  ){
       console.log(4)
-      var amountPerOneSol = pricing2.buyWithBaseAmount(last + 138);
-      for (var i = 0; i <= 16; i++){
-      // @ts-ignore
-      console.log(last + 138)
-      }
-      if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+     
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
   
     // @ts-ignore
     //alert(price) 0.22
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    console.log(formatNumber.asNumber(fairLaunch2?.state.data.last))
-  console.log(fairLaunch2?.state.treasury.toBase58())
-    setMin2((  amountPerOneSol ))
+    setMin2((  1 ))
 
     setMin((  currentBuyPriceSol ))
 
-      }
   }
   }
   } catch(err){
@@ -233,27 +218,25 @@ setInterval(async function(){
 
 setTimeout(async function(){
   if (tokenBondingSdk  && tokenCollectiveSdk){
+    console.log(2)
 
-       var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
-       var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
-    if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyWithBaseAmount( last + 138);
-      if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+    var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
+    console.log(3)
+    
+    if (pricing  ){
+      console.log(4)
+     
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
   
     // @ts-ignore
     //alert(price) 0.22
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    if (!min2){
-      setMin2((  amountPerOneSol ))
-      }
-      if (!min){
-      setMin((  currentBuyPriceSol ))
-      }
-      }
-  }
+    setMin2((  1 ))
+
+    setMin((  currentBuyPriceSol ))
+    }
   }
   
 }, 4500)
@@ -336,22 +319,18 @@ if (min == 1 && fairLaunch && tf){
   if (tokenBondingSdk){
 setTimeout(async function(){
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
-    if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyWithBaseAmount( last + 138);
+    if (pricing  && fairLaunch){
       
-      if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
   
     // @ts-ignore
     //alert(price) 0.22
     //alert(price2)0.04 0.28
     // @ts-ignore
     // @ts-ignore
-    setMin2((  amountPerOneSol ))
+    setMin2((  1 ))
 
     setMin((  currentBuyPriceSol ))
-      }
     }
 
   }, 250)
@@ -404,7 +383,7 @@ await swap({
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: baseBondingKey,
-    targetAmount: min2 * 1.05,
+    targetAmount: min2 * 1,
     slippage: 0.80
   })  
     console.log('deposit'); 
@@ -420,7 +399,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  last + 138, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  last + 134, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
@@ -449,35 +428,34 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-var mintPublicKey2 =usePublicKey("6vRxW2CrJTAiWxnDTB5Lmap3WkQJ3oZeEsyVnWw6GYSA")  
-var mintPublicKey = usePublicKey("3TT2Jw6WKeDCxvzdNXxhPUEDk3dv2Evpv51ft6LCGUjA")
-var bond1 = usePublicKey("97YzWewkGFNmHTEmBpry4SCHa9rSMtJ19HnaYaCFBuiH")
+var mintPublicKey2 =usePublicKey("8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA")  
+var mintPublicKey = usePublicKey("Ax4g2hBNLqxaJbbDUrwEErX1h1JKLdtJsRebcDWcNacA")
+var mm = useTokenBondingFromMint(mintPublicKey)
+var bond1 = (mm.info?.publicKey)
+var mm = useTokenBondingFromMint(mintPublicKey2)
 
-var bond2 = useTokenBondingFromMint(mintPublicKey2).info?.publicKey// account?.publicKey//  usePublicKey("97YzWewkGFNmHTEmBpry4SCHa9rSMtJ19HnaYaCFBuiH")
-
-var tokenBondingKey = bond1
-var baseBondingKey = bond2
-var fanout = usePublicKey("51Pich7ib1PHzDn26qnNiLbDDgRBwiisNMbNdS2X2u7r")
+console.log(bond1?.toBase58())
+var tokenBondingKey = bond1 
+var fanout = usePublicKey("8gm9wdoBDUzLW38mwxPvNqmXxN14QdSdAdWMaUCPT6fG")
 const { error, execute } = useSwap();
 const { handleErrors } = useErrorHandler();
 handleErrors(error);
 const { info: tokenBonding } = useTokenBonding(tokenBondingKey);
-const { info: tokenBonding2, loading: loading123 } = useTokenBonding(baseBondingKey);
 const [tradingMints, setTradingMints] = useState<{
   base?: PublicKey;
   target?: PublicKey;
 }>({
-  base: tokenBonding2?.baseMint,
+  base: mintPublicKey2,
   target: tokenBonding?.targetMint,
 });
 React.useEffect(() => {
-  if ((!tradingMints.base || !tradingMints.target) && tokenBonding && tokenBonding2) {
+  if ((!tradingMints.base || !tradingMints.target) && tokenBonding ) {
     setTradingMints({
-      base: tokenBonding2.baseMint,
+      base: mintPublicKey2,
       target: tokenBonding.targetMint,
     });
   }
-}, [tokenBonding, tradingMints, tokenBonding2]);
+}, [tokenBonding, tradingMints]);
 const identity = () => {};
 var driverLoading: boolean 
 var swapProps: any 
@@ -568,7 +546,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                   tokenBondingKey={tokenBondingKey as PublicKey}
                   useTokenOfferingCurve
                 />
-                {!loading123 && min && min2 && 
+                { min && min2 && 
                 // @ts-ignore
     <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
@@ -584,7 +562,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
 
 export const Home: NextPage = (props) => {
 
-  var fanout = usePublicKey("51Pich7ib1PHzDn26qnNiLbDDgRBwiisNMbNdS2X2u7r")
+  var fanout = usePublicKey("8gm9wdoBDUzLW38mwxPvNqmXxN14QdSdAdWMaUCPT6fG")
 
 
   return (
