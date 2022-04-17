@@ -205,7 +205,7 @@ setInterval(async function(){
       console.log((formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1)
       }
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
@@ -237,7 +237,7 @@ setTimeout(async function(){
     if (pricing && pricing2 && fairLaunch){
       var amountPerOneSol = pricing2.buyTargetAmount( last + 1);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
@@ -339,7 +339,7 @@ setTimeout(async function(){
       var amountPerOneSol = pricing2.buyTargetAmount( last + 1);
       
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
