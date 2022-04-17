@@ -185,15 +185,11 @@ if (first && tokenBondingSdk){
 
 setInterval(async function(){
   try{
-    console.log(1)
   if (tokenBondingSdk && tokenCollectiveSdk){
-    console.log(2)
-
+    
     var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
-    console.log(3)
     
     if (pricing  ){
-      console.log(4)
      
     var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
   
@@ -216,30 +212,6 @@ setInterval(async function(){
 }
 }, 2666)
 
-setTimeout(async function(){
-  if (tokenBondingSdk  && tokenCollectiveSdk){
-    console.log(2)
-
-    var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
-    console.log(3)
-    
-    if (pricing  ){
-      console.log(4)
-     
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
-  
-    // @ts-ignore
-    //alert(price) 0.22
-    //alert(price2)0.04 0.28
-    // @ts-ignore
-    // @ts-ignore
-    setMin2((  1 ))
-
-    setMin((  currentBuyPriceSol ))
-    }
-  }
-  
-}, 4500)
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
 const [alertState, setAlertState] = useState<AlertState>({
@@ -314,31 +286,7 @@ var  max, fee, step, median;
 const [ min2 , setMin2 ] = useState<number>()
 const [ min , setMin ] = useState<number>()
 let tf = true
-if (min == 1 && fairLaunch && tf){
-  tf = false
-  if (tokenBondingSdk){
-setTimeout(async function(){
-    var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
-    if (pricing  && fairLaunch){
-      
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(last + 138);
-  
-    // @ts-ignore
-    //alert(price) 0.22
-    //alert(price2)0.04 0.28
-    // @ts-ignore
-    // @ts-ignore
-    setMin2((  1 ))
 
-    setMin((  currentBuyPriceSol ))
-    }
-
-  }, 250)
- 
-  }
-  // @ts-ignore
-//setMin( (formatNumber.asNumber(fairLaunch?.state.data.last)) + 1)
-}
 var phaseOneEnd =  toDate(fairLaunch?.state.data.phaseOneEnd)?.getTime();
 
 const ValueSlider = (Slider)
@@ -352,9 +300,11 @@ var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
 //var max = min + (1 * 1);
 // @ts-ignore
 var step = 1;
+setInterval(async function(){
 if (fairLaunch ){
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
 }
+}, 1000)
 const onDeposit = async () => {
   /*
 await swap({
