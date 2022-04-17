@@ -380,12 +380,6 @@ await swap({
     targetAmount: min * 1.2,
     slippage: 0.80
   })
-  await tokenBondingSdk.sell({
-    // @ts-ignore
-    tokenBonding: baseBondingKey,
-    targetAmount: min2 * 1,
-    slippage: 0.80
-  })  
     console.log('deposit'); 
     const provider = new anchor.Provider(connection2, anchorWallet, {
       preflightCommitment: 'recent',
