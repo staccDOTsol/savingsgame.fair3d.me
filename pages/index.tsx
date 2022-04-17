@@ -199,7 +199,7 @@ setInterval(async function(){
     );
     if (pricing && pricing2 && fairLaunch2){
       console.log(4)
-      var amountPerOneSol = pricing2.buyTargetAmount(last + Math.ceil(Math.random() * 13.8));
+      var amountPerOneSol = pricing2.buyTargetAmount(last + 6.66));
       for (var i = 0; i <= 16; i++){
       // @ts-ignore
       console.log((formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1)
@@ -235,7 +235,7 @@ setTimeout(async function(){
        var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
        var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
     if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyTargetAmount( last + Math.ceil(Math.random() * 13.8));
+      var amountPerOneSol = pricing2.buyTargetAmount( last + 6.66));
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
   
@@ -336,7 +336,7 @@ setTimeout(async function(){
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyTargetAmount( last + Math.ceil(Math.random() * 13.8));
+      var amountPerOneSol = pricing2.buyTargetAmount( last + 6.66));
       
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
     var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
@@ -418,7 +418,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  last + Math.ceil(Math.random() * 13.8), wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  last + 6.66), wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
