@@ -199,13 +199,13 @@ setInterval(async function(){
     );
     if (pricing && pricing2 && fairLaunch2){
       console.log(4)
-      var amountPerOneSol = pricing2.buyTargetAmount(last + 6.66);
+      var amountPerOneSol = pricing2.buyWithBaseAmount(last + 6.66);
       for (var i = 0; i <= 16; i++){
       // @ts-ignore
-      console.log((formatNumber.asNumber(fairLaunch2?.state.data.last)) + 1)
+      console.log(last + 6.66)
       }
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
@@ -235,9 +235,9 @@ setTimeout(async function(){
        var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
        var pricing2 = await tokenBondingSdk.getPricing(bond2 as PublicKey);
     if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyTargetAmount( last + 6.66);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( last + 6.66);
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
@@ -336,10 +336,10 @@ setTimeout(async function(){
     var pricing = await tokenBondingSdk.getPricing(tokenBondingKey);
     var pricing2 = await tokenBondingSdk.getPricing(baseBondingKey);
     if (pricing && pricing2 && fairLaunch){
-      var amountPerOneSol = pricing2.buyTargetAmount( last + 6.66);
+      var amountPerOneSol = pricing2.buyWithBaseAmount( last + 6.66);
       
       if (amountPerOneSol){ amountPerOneSol = amountPerOneSol * 1.138
-    var currentBuyPriceSol = pricing.buyTargetAmount(amountPerOneSol);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(amountPerOneSol);
   
     // @ts-ignore
     //alert(price) 0.22
