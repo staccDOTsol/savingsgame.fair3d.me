@@ -12,7 +12,7 @@ export const Branding = () => (
       </Link>
     </HStack>
     <Text fontSize="14px" color="gray.400">
-      Powered by (this is the 1/3) Jare &amp; (Strata &amp; Metaplex) (these 2 are safe)
+      Powered by (this is the 1/3) Jare &amp; (Strata &amp; Hydra) (these 2 are safe)
     </Text>
   </VStack>
 );
