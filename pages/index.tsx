@@ -181,7 +181,7 @@ const [targetPrice, setTargetPrice] = useState<number >(1);
 setTimeout(async function(){
 if (first && tokenBondingSdk){
   console.log('ahahahahah')
-  first = false
+  first = true
 
 setInterval(async function(){
   try{
@@ -207,10 +207,10 @@ setInterval(async function(){
   } catch(err){
     console.log(err)
   }
-}, 1940)
+}, 940)
 
 }
-}, 2666)
+}, 356)
 
 const [fairLaunch, setFairLaunch] = useState<FairLaunchAccount>();
 
@@ -304,6 +304,7 @@ setInterval(async function(){
 if (fairLaunch ){
   console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
+ last = last * 10 ** 6
  console.log(last)
 }
 }, 1000)
@@ -325,13 +326,13 @@ await swap({
  if (!loading && tokenBondingSdk && min && min2){
   setIsMinting(true);
   
-/*
+
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
     targetAmount: min * 1.2,
     slippage: 0.80
-  }) */
+  }) 
     console.log('deposit'); 
     const provider = new anchor.Provider(connection2, anchorWallet, {
       preflightCommitment: 'recent',
@@ -345,7 +346,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  last + 1, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  138, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
