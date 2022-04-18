@@ -326,7 +326,7 @@ await swap({
   setIsMinting(true);
   
 
-  await tokenBondingSdk.buy({
+  await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
     targetAmount: last,
@@ -492,7 +492,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                   tokenBondingKey={tokenBondingKey as PublicKey}
                   useTokenOfferingCurve
                 />
-                { last && min && 
+                { last && min &&  
                 // @ts-ignore
     <SwapForm min={min * 1.2} last={last * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
