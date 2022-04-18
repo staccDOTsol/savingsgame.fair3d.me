@@ -207,7 +207,7 @@ setInterval(async function(){
   } catch(err){
     console.log(err)
   }
-}, 15940)
+}, 1940)
 
 }
 }, 2666)
@@ -302,7 +302,9 @@ var fee = formatNumber.asNumber(fairLaunch?.state.data.fee);
 var step = 1;
 setInterval(async function(){
 if (fairLaunch ){
+  console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
+ console.log(last)
 }
 }, 1000)
 const onDeposit = async () => {
@@ -323,13 +325,13 @@ await swap({
  if (!loading && tokenBondingSdk && min && min2){
   setIsMinting(true);
   
-
+/*
   await tokenBondingSdk.sell({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
     targetAmount: min * 1.2,
     slippage: 0.80
-  })
+  }) */
     console.log('deposit'); 
     const provider = new anchor.Provider(connection2, anchorWallet, {
       preflightCommitment: 'recent',
@@ -343,7 +345,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  last + 134, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket(  last + 1, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
