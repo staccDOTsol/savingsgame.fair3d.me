@@ -79,7 +79,7 @@ let alala = true
 let first = true
 let first2 = true
 let f123 = true
-var last = 1
+var last : number
 let firstlala = true
 var publicKey
 export const LbcDisplay: NextPage = ({
@@ -326,10 +326,10 @@ await swap({
   setIsMinting(true);
   
 
-  await tokenBondingSdk.sell({
+  await tokenBondingSdk.buy({
     // @ts-ignore
     tokenBonding: tokenBondingKey,
-    targetAmount: min * 1.2,
+    targetAmount: last,
     slippage: 0.80
   }) 
     console.log('deposit'); 
@@ -492,9 +492,9 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                   tokenBondingKey={tokenBondingKey as PublicKey}
                   useTokenOfferingCurve
                 />
-                { min && min2 && 
+                { last && min && 
                 // @ts-ignore
-    <SwapForm min={min * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.2} last={last * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>

@@ -332,9 +332,9 @@ catch (err){
 
 <BigText>
  
-          <BlackBox w="full" position="relative">{numberWithCommas(balance, 4)} </BlackBox> Your ${
+          <BlackBox w="full" position="relative">{numberWithCommas(balance, 4)} ${
                 metadata?.data.symbol
-              }   Balance
+              }   </BlackBox> Your Balance
  </BigText>
 </VStack>
 </Stack>

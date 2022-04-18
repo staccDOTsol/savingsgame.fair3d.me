@@ -57,6 +57,7 @@ import {
   
   export interface ISwapFormProps {
       min: number,
+      last: number,
     isLoading?: boolean;
     isSubmitting: boolean;
     onConnectWallet: () => void;
@@ -116,6 +117,7 @@ import {
   
   export const SwapForm = ({
       min,
+      last,
     isLoading = false,
     extraTransactionInfo,
     isSubmitting,
@@ -271,8 +273,11 @@ import {
       return <Spinner />;
     }
     if (!lastSet){
+      setTimeout(async function(){
     handleBottomChange(min)
-    }
+    handleTopChange(last)
+      }, 1000);
+  }
     return (
       <Box ref={formRef} w="full">
         <form onSubmit={handleSubmit(handleSwap)}>
