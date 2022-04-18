@@ -190,8 +190,8 @@ setInterval(async function(){
     var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
     
     if (pricing  ){
-     
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(last / 10 ** 6);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last / 10 ** 3);
+      
   
     // @ts-ignore
     //alert(price) 0.22
@@ -201,8 +201,7 @@ setInterval(async function(){
     setMin2((  1 ))
 
     setMin((  currentBuyPriceSol ))
-
-  }
+      }
   }
   } catch(err){
     console.log(err)
