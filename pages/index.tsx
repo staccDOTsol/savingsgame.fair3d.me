@@ -346,7 +346,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket( last + 138, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket( last * 1.1, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
