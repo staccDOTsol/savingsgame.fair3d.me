@@ -129,7 +129,7 @@ export const purchaseTicket = async (
   let amountLamports = 0;
   //@ts-ignore
   if (true) {
-    amountLamports = Math.ceil(amount * 10 ** 6);
+    amountLamports = Math.ceil(amount)// * 10 ** 6);
     const transferAuthority = anchor.web3.Keypair.generate();
     signers.push(transferAuthority);
     // NOTE this token impl will not work till you get decimal mantissa and multiply...
