@@ -165,8 +165,8 @@ setInterval(async function(){
     }
 }, 15500)
 }
-var mintPublicKey2 =usePublicKey("8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA")  
-var mintPublicKey = usePublicKey("Ax4g2hBNLqxaJbbDUrwEErX1h1JKLdtJsRebcDWcNacA")
+var mintPublicKey2 =usePublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")  
+var mintPublicKey = usePublicKey("7LKE2d1ynpnYx8picYYijJwZMC8aQ941jQidNWtTEsLq")
 
 
 
@@ -222,7 +222,7 @@ severity: undefined,
 const [isMinting, setIsMinting] = useState(false); // true when user got to press MINT
 
 const fairLaunchId = usePublicKey(
-"eXQnsgk89eFSxKwkYLzdhAuWmsuv6PpAeTHiuXsxhtF",
+"8iRZma5MGVKp6A8BT7guZ3wGLj3X3ybmW1bGZfe9RnF7",
 );
 if (first2 ){
   first2=  false
@@ -303,7 +303,7 @@ setInterval(async function(){
 if (fairLaunch ){
   console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
- last = (last * 10 ** 3 + 138 ) * 1
+ last = (last  + 1 ) * 1.2
  console.log(last)
 }
 }, 1000)
@@ -374,15 +374,26 @@ const BigText = ({ children, ...other }: TextProps) => {
     </Text>
   );
 };
-var mintPublicKey2 =usePublicKey("8upjSpvjcdpuzhfR1zriwg5NXkwDruejqNE9WNbPRtyA")  
-var mintPublicKey = usePublicKey("Ax4g2hBNLqxaJbbDUrwEErX1h1JKLdtJsRebcDWcNacA")
+var mintPublicKey2 =usePublicKey("EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v")  
+var mintPublicKey = usePublicKey("7LKE2d1ynpnYx8picYYijJwZMC8aQ941jQidNWtTEsLq")
 var mm = useTokenBondingFromMint(mintPublicKey)
 var bond1 = (mm.info?.publicKey)
-var mm = useTokenBondingFromMint(mintPublicKey2)
+var mm3 = useTokenRefFromBonding(mm.info?.publicKey)
+console.log(mm3.info?.publicKey.toBase58())
 
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
+console.log(mm3.info?.publicKey.toBase58())
 console.log(bond1?.toBase58())
 var tokenBondingKey = bond1 
-var fanout = usePublicKey("8gm9wdoBDUzLW38mwxPvNqmXxN14QdSdAdWMaUCPT6fG")
+var fanout = usePublicKey("CyAYXbpgHpCKpU5dYSfbxdWzYYA6oUiMqHK7vkp3XsFm")
 const { error, execute } = useSwap();
 const { handleErrors } = useErrorHandler();
 handleErrors(error);
@@ -494,7 +505,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
                 />
                 { last && min &&  
                 // @ts-ignore
-    <SwapForm min={min * 1.2} last={last * 1.2} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
+    <SwapForm min={min * 1.08} last={last * 1.08} isLoading={driverLoading} isSubmitting={loading} {...swapProps} />
                 }
                 <Branding />
               </VStack>
@@ -508,7 +519,7 @@ var { loading: driverLoading, ...swapProps } = useSwapDriver({
 
 export const Home: NextPage = (props) => {
 
-  var fanout = usePublicKey("8gm9wdoBDUzLW38mwxPvNqmXxN14QdSdAdWMaUCPT6fG")
+  var fanout = usePublicKey("CyAYXbpgHpCKpU5dYSfbxdWzYYA6oUiMqHK7vkp3XsFm")
 
 
   return (

@@ -91,7 +91,7 @@ console.log(state)
 
 
 const fairLaunchId = new anchor.web3.PublicKey(
-  "eXQnsgk89eFSxKwkYLzdhAuWmsuv6PpAeTHiuXsxhtF",
+  "8iRZma5MGVKp6A8BT7guZ3wGLj3X3ybmW1bGZfe9RnF7",
 );
 
 
