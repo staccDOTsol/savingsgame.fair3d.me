@@ -191,7 +191,7 @@ setInterval(async function(){
     
     if (pricing  ){
      
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(last);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last / 10 ** 6);
   
     // @ts-ignore
     //alert(price) 0.22
