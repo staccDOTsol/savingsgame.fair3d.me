@@ -190,7 +190,7 @@ setInterval(async function(){
     var pricing = await tokenBondingSdk.getPricing(bond1 as PublicKey);
     
     if (pricing  ){
-    var currentBuyPriceSol = pricing.buyWithBaseAmount(last / 10 ** 3);
+    var currentBuyPriceSol = pricing.buyWithBaseAmount(last / 1);
       
   
     // @ts-ignore
@@ -303,7 +303,7 @@ setInterval(async function(){
 if (fairLaunch ){
   console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
- last = (last + 138) * 10 ** 6
+ last = (last + 138 ) * 1
  console.log(last)
 }
 }, 1000)
@@ -345,7 +345,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket( last / 10 ** 3, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket( last , wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
