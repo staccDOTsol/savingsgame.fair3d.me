@@ -304,7 +304,7 @@ setInterval(async function(){
 if (fairLaunch ){
   console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
- last = last * 10 ** 6
+ last = last 
  console.log(last)
 }
 }, 1000)
@@ -346,7 +346,7 @@ await swap({
       connection2,
     );
     // @ts-ignore
-    await purchaseTicket(  138, wallet, fairLaunch, wallet.publicKey, connection2);
+    await purchaseTicket( last + 138, wallet, fairLaunch, wallet.publicKey, connection2);
      
     setIsMinting(false);
     setAlertState({
