@@ -303,7 +303,7 @@ setInterval(async function(){
 if (fairLaunch ){
   console.log(fairLaunch)
  last = formatNumber.asNumber(fairLaunch.state.data.last) as number;
- last = (last + 138 ) * 1
+ last = (last * 10 ** 3 + 138 ) * 1
  console.log(last)
 }
 }, 1000)
